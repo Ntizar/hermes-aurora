@@ -6,6 +6,8 @@ El agente deja de improvisar CSS: resuelve la versión viva del sistema, decide 
 
 ![Landing hecha con Aurora](docs/screenshots/landing.png)
 
+**Página de lanzamiento con las capturas y el hilo:** <https://ntizar.github.io/hermes-aurora/>
+
 ## Instalación
 
 ```bash

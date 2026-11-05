@@ -6,6 +6,8 @@ The agent stops improvising CSS. It resolves the live version of the system, spe
 
 ![Landing page built with Aurora](docs/screenshots/landing.png)
 
+**Launch page with the demo screenshots and the announcement thread:** <https://ntizar.github.io/hermes-aurora/>
+
 ## Install
 
 ```bash
