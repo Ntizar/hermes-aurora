@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="es" data-nz-theme="light" data-nz-marca="monocromo">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dos artefactos para Hermes Agent · Aurora + criterios de aceptación</title>
+<meta name="description" content="Plugin de skills Aurora para Hermes Agent y skill de criterios de aceptación: el agente deja de improvisar UI y de decir «listo» sin pruebas.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10/tokens.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10/marcas/monocromo.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10/packs/p1-layout.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10/packs/p2-navigation.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10/packs/p3-typography.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10/packs/p4-actions.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10/packs/p6-feedback.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10/packs/p8-data.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10/packs/p9-media.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10/packs/p11-social.css">
+</head>
+<body class="nz">
+
+<nav class="nz-navbar nz-navbar--bordered" aria-label="Sitio">
+  <a class="nz-navbar__brand nz-navbar__link" href="https://github.com/Ntizar/Aurora"><i></i>Aurora · Hermes</a>
+  <span class="nz-navbar__links">
+    <a class="nz-navbar__link" href="#que-es">Qué es</a>
+    <a class="nz-navbar__link" href="#skills">Skills</a>
+    <a class="nz-navbar__link" href="#capturas">Capturas</a>
+    <a class="nz-navbar__link" href="#hilo">Hilo</a>
+    <a class="nz-navbar__link" href="index.html">EN</a>
+  </span>
+</nav>
+
+<main class="nz-stack">
+
+  <section class="nz-hero-bleed">
+    <div class="nz-container nz-stack">
+      <span class="nz-eyebrow">Lanzamiento · noviembre 2026</span>
+      <h1 class="nz-display">Que el agente deje de improvisar</h1>
+      <p class="nz-lead nz-lead--lg">Dos artefactos abiertos para Hermes Agent: uno le enseña a construir interfaz con un design system de verdad; el otro convierte «listo» en un recibo comprobable.</p>
+      <div class="nz-cluster">
+        <a class="nz-btn nz-btn--primary nz-btn--lg" href="#hilo">Ver el hilo</a>
+        <a class="nz-cta" href="#que-es">Cómo funciona<span class="nz-cta__arrow">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="nz-container" aria-label="Cifras">
+    <div class="nz-thirds">
+      <div class="nz-kpi nz-kpi--bordered">
+        <span class="nz-kpi__label">Skills en el plugin</span>
+        <span class="nz-kpi__value">4</span>
+      </div>
+      <div class="nz-kpi nz-kpi--bordered">
+        <span class="nz-kpi__label">Tools, hooks y red</span>
+        <span class="nz-kpi__value nz-kpi__value--accent">0</span>
+      </div>
+      <div class="nz-kpi nz-kpi--bordered">
+        <span class="nz-kpi__label">Dependencias</span>
+        <span class="nz-kpi__value">0</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="que-es" class="nz-container nz-stack" aria-label="Qué es cada cosa">
+    <h2 class="nz-h3">Qué es cada cosa</h2>
+
+    <div class="nz-split">
+      <article class="nz-article">
+        <span class="nz-badge">Plugin</span>
+        <h3 class="nz-h5">aurora-design-system</h3>
+        <p class="nz-prose">Cuatro skills que enseñan al agente a construir UI con Aurora: resuelve la versión viva del repo, compone solo con objetos documentados y valida la página con el auditor del sistema. Cero tools, cero hooks, cero red.</p>
+        <code class="nz-code nz-code--block">hermes plugins install aurora-design-system</code>
+        <p class="nz-prose"><a class="nz-cta" href="https://github.com/Ntizar/hermes-aurora">Repo del plugin<span class="nz-cta__arrow">→</span></a></p>
+      </article>
+
+      <article class="nz-article">
+        <span class="nz-badge">Skill</span>
+        <h3 class="nz-h5">acceptance-criteria</h3>
+        <p class="nz-prose">Fija 3-7 criterios falsables antes de empezar, cada uno con su comando. Al terminar, <code class="nz-code">check</code> los ejecuta y <code class="nz-code">close</code> se niega si algo sigue rojo. «Hecho» pasa a ser un recibo.</p>
+        <code class="nz-code nz-code--block">hermes skills install https://raw.githubusercontent.com/Ntizar/hermes-skill-acceptance-criteria/main/SKILL.md</code>
+        <p class="nz-prose"><a class="nz-cta" href="https://github.com/Ntizar/hermes-skill-acceptance-criteria">Repo de la skill<span class="nz-cta__arrow">→</span></a></p>
+      </article>
+    </div>
+  </section>
+
+  <section id="skills" class="nz-container nz-stack" aria-label="Las cuatro skills">
+    <h2 class="nz-h3">Las cuatro skills</h2>
+    <div class="nz-grid-auto">
+      <article class="nz-article">
+        <h3 class="nz-h5">aurora</h3>
+        <p class="nz-prose">Doctrina: paso 0 de versión, enlaces pineados, 12 reglas duras y tabla necesidad → objeto.</p>
+      </article>
+      <article class="nz-article">
+        <h3 class="nz-h5">aurora-pages</h3>
+        <p class="nz-prose">Arquetipos y forma: lienzo de escritorio, apilado móvil, escala tipográfica, presupuesto de superficies.</p>
+      </article>
+      <article class="nz-article">
+        <h3 class="nz-h5">aurora-validate</h3>
+        <p class="nz-prose">El juez: <code class="nz-code">0 fallos</code> del auditor y medición real en navegador antes de entregar.</p>
+      </article>
+      <article class="nz-article">
+        <h3 class="nz-h5">aurora-generative</h3>
+        <p class="nz-prose">Cuando el modelo compone en caliente: openui-lang, spec, runtime y horneado estático.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="capturas" class="nz-container nz-stack" aria-label="Capturas">
+    <h2 class="nz-h3">Lo que sale</h2>
+    <div class="nz-split">
+      <figure class="nz-figure">
+        <img class="nz-img nz-img--bordered nz-img--rounded" src="screenshots/landing.png" alt="Landing construida con Aurora: hero, tres tarjetas y precios">
+        <figcaption>Landing</figcaption>
+      </figure>
+      <figure class="nz-figure">
+        <img class="nz-img nz-img--bordered nz-img--rounded" src="screenshots/dashboard.png" alt="Panel construido con Aurora: KPIs, tabla y gráfico">
+        <figcaption>Panel</figcaption>
+      </figure>
+    </div>
+    <div class="nz-callout nz-callout--note">
+      <p><strong>No son maquetas.</strong> Son los ejemplos canónicos del design system, renderizados por Chrome headless. La carpeta <code class="nz-code">demo/</code> los tiene tal cual.</p>
+    </div>
+  </section>
+
+  <section id="hilo" class="nz-container nz-stack" aria-label="Hilo para Twitter">
+    <h2 class="nz-h3">El hilo, listo para publicar</h2>
+    <p class="nz-lead">Ocho tuits, todos por debajo de 280 caracteres. Los enlaces van al final.</p>
+
+    <article class="nz-article">
+      <span class="nz-lbl">1/8</span>
+      <p class="nz-prose" id="t1">He publicado dos cosas para Hermes Agent. Las dos nacen del mismo vicio: decir «listo» sin pruebas.
+
+· aurora-design-system → que el agente deje de improvisar CSS
+· acceptance-criteria → que «hecho» signifique algo
+
+Hilo corto.</p>
+      <button class="nz-btn nz-btn--outline nz-btn--sm" type="button" data-copiar="t1">Copiar</button>
+    </article>
+
+    <article class="nz-article">
+      <span class="nz-lbl">2/8</span>
+      <p class="nz-prose" id="t2">Problema 1: los agentes escriben CSS a ojo. Inventan clases, meten degradados y te enseñan una captura preciosa que en móvil desborda.
+
+Aurora es mi design system: CSS puro, ~2.200 objetos documentados. El problema nunca fue el CSS: era cómo se lo das a un modelo.</p>
+      <button class="nz-btn nz-btn--outline nz-btn--sm" type="button" data-copiar="t2">Copiar</button>
+    </article>
+
+    <article class="nz-article">
+      <span class="nz-lbl">3/8</span>
+      <p class="nz-prose" id="t3">El plugin no le mete 340 KB de CSS en el prompt. Le enseña un procedimiento:
+
+1. paso 0: resolver la versión viva del repo. Nunca de memoria
+2. leer LLM.md + components.json (~20 KB)
+3. copiar markup del censo. Si la clase no está, no existe
+4. validar con el auditor</p>
+      <button class="nz-btn nz-btn--outline nz-btn--sm" type="button" data-copiar="t3">Copiar</button>
+    </article>
+
+    <article class="nz-article">
+      <span class="nz-lbl">4/8</span>
+      <p class="nz-prose" id="t4">Cuatro skills: doctrina, páginas, validación y capa generativa (openui-lang).
+
+hermes plugins install aurora-design-system
+
+Cero tools, cero hooks, cero red. Solo cuatro SKILL.md.</p>
+      <button class="nz-btn nz-btn--outline nz-btn--sm" type="button" data-copiar="t4">Copiar</button>
+    </article>
+
+    <article class="nz-article">
+      <span class="nz-lbl">5/8</span>
+      <p class="nz-prose" id="t5">Problema 2: «listo» sin recibo. El fallo típico de un agente no es equivocarse, es decir que ha terminado sin nada detrás.
+
+La skill fija 3-7 criterios falsables ANTES de empezar, cada uno con su comando. check los ejecuta; close se niega si algo está en rojo.</p>
+      <button class="nz-btn nz-btn--outline nz-btn--sm" type="button" data-copiar="t5">Copiar</button>
+    </article>
+
+    <article class="nz-article">
+      <span class="nz-lbl">6/8</span>
+      <p class="nz-prose" id="t6">CLOSED checkout-fix - 3 criteria green
+  ok  c1 repro is covered   (4.2 s)
+  ok  c2 no new lint        (0.9 s)
+  ok  c3 staging responds   (0.3 s)
+
+Eso es un recibo. «Ya está» no lo es.</p>
+      <button class="nz-btn nz-btn--outline nz-btn--sm" type="button" data-copiar="t6">Copiar</button>
+    </article>
+
+    <article class="nz-article">
+      <span class="nz-lbl">7/8</span>
+      <p class="nz-prose" id="t7">Lo mejor de todo: el escáner de instalación me bloqueó el plugin.
+
+Dos hallazgos reales en mis páginas de demo: rutas ../../ (traversal) y un comentario que parecía inyección.
+
+No lo desactivé. Arreglé las demos. Tenía razón las dos veces.</p>
+      <button class="nz-btn nz-btn--outline nz-btn--sm" type="button" data-copiar="t7">Copiar</button>
+    </article>
+
+    <article class="nz-article">
+      <span class="nz-lbl">8/8</span>
+      <p class="nz-prose" id="t8">Siguiente: entrada en el catálogo de plugins de Hermes (PR preparado).
+
+Todo, con capturas y el hilo: ntizar.github.io/hermes-aurora/es.html
+
+Plugin: github.com/Ntizar/hermes-aurora
+Skill: github.com/Ntizar/hermes-skill-acceptance-criteria
+
+Si construyes UI con agentes, cuéntame qué te rompe.</p>
+      <button class="nz-btn nz-btn--outline nz-btn--sm" type="button" data-copiar="t8">Copiar</button>
+    </article>
+  </section>
+
+  <section class="nz-container" aria-label="Empezar">
+    <div class="nz-cta-banner">
+      <span class="nz-cta-banner__eyebrow">Hecho con Hermes</span>
+      <h2 class="nz-cta-banner__title">Un agente que no adivina</h2>
+      <p class="nz-cta-banner__body">Instala los dos, o lee el código: son cuatro SKILL.md y 240 líneas de Python sin dependencias.</p>
+      <div class="nz-cta-banner__actions">
+        <a class="nz-btn nz-btn--outline" href="https://github.com/Ntizar/hermes-aurora">Ver el plugin</a>
+        <a class="nz-cta nz-cta--underline" href="https://github.com/Ntizar/hermes-skill-acceptance-criteria">Ver la skill</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="nz-footer">
+  Hecho con ❤️ por David Antizar
+</footer>
+
+<script>
+document.querySelectorAll('[data-copiar]').forEach(function (boton) {
+  boton.addEventListener('click', function () {
+    var texto = document.getElementById(boton.dataset.copiar).innerText;
+    navigator.clipboard.writeText(texto).then(function () {
+      boton.textContent = 'Copiado';
+      setTimeout(function () { boton.textContent = 'Copiar'; }, 1500);
+    });
+  });
+});
+</script>
+
+</body>
+</html>
