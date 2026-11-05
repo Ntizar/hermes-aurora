@@ -1,0 +1,13 @@
+name: aurora-design-system
+version: 1.0.0
+description: "Aurora design system for Hermes: four skills that teach the agent to build production web UI with Ntizar/Aurora (pure CSS, OKLch tokens, light+dark, 2k+ census objects). Version is resolved from the repo at task time, never from memory."
+author: "David Antizar (Ntizar)"
+license: MIT
+homepage: https://github.com/Ntizar/hermes-aurora
+requires_hermes: ">=0.21"
+tags: [design-system, css, frontend, ui, web]
+
+# Skills-only plugin: no tools, no hooks, no network, no background work.
+# register() only publishes the four SKILL.md files bundled under skills/.
+provides_tools: []
+provides_hooks: []
