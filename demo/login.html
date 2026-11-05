@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="es" data-nz-theme="light" data-nz-marca="monocromo">
+<html lang="en" data-nz-theme="light" data-nz-marca="monocromo">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Iniciar sesión · Receta Aurora</title>
+<title>Sign in · Aurora example</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10/tokens.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10/marcas/monocromo.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10/packs/p1-layout.css">
@@ -20,30 +20,30 @@
 <nav class="nz-navbar nz-navbar--bordered" aria-label="Sitio">
   <a class="nz-navbar__brand nz-navbar__link" href="https://ntizar.github.io/Aurora/index.html"><i></i>Aurora</a>
   <span class="nz-navbar__links">
-      <a class="nz-navbar__link" href="https://ntizar.github.io/Aurora/base.html">Catálogo</a>
-      <a class="nz-navbar__link" href="https://ntizar.github.io/Aurora/bloques/recetas/index.html">Bloques</a>
-      <a class="nz-navbar__link" href="https://ntizar.github.io/Aurora/marcas/index.html">Marcas</a>
+      <a class="nz-navbar__link" href="https://ntizar.github.io/Aurora/base.html">Catalogue</a>
+      <a class="nz-navbar__link" href="https://ntizar.github.io/Aurora/bloques/recetas/index.html">Blocks</a>
+      <a class="nz-navbar__link" href="https://ntizar.github.io/Aurora/marcas/index.html">Brands</a>
       <a class="nz-navbar__link" href="https://ntizar.github.io/Aurora/openui/index.html">OpenUI</a>
-      <a class="nz-navbar__link" href="https://ntizar.github.io/Aurora/iconos/index.html">Iconos</a>
+      <a class="nz-navbar__link" href="https://ntizar.github.io/Aurora/iconos/index.html">Icons</a>
   </span>
 </nav>
 <main class="nz-container nz-container--narrow nz-center-xy" style="min-height:100dvh">
   <section class="nz-article" style="width:100%">
 
-    <h1 class="nz-h2 nz-h2--brand">Accede a tu cuenta</h1>
-    <p class="nz-lead nz-lead--sm">Panel de expedientes para equipos de obra.</p>
+    <h1 class="nz-h2 nz-h2--brand">Sign in to your account</h1>
+    <p class="nz-lead nz-lead--sm">Project dashboard for field teams.</p>
 
     <form class="nz-stack nz-stack--sm" action="#" method="post">
 
       <label class="nz-field">
-        <span class="nz-field__label nz-field__label--req">Correo</span>
+        <span class="nz-field__label nz-field__label--req">Email</span>
         <input class="nz-input" type="email" name="correo"
                placeholder="tu@correo.es" autocomplete="email" required>
-        <span class="nz-field__help">Nunca compartimos tu correo.</span>
+        <span class="nz-field__help">We never share your email.</span>
       </label>
 
       <label class="nz-field">
-        <span class="nz-field__label nz-field__label--req">Contraseña</span>
+        <span class="nz-field__label nz-field__label--req">Password</span>
         <input class="nz-input" type="password" name="clave"
                autocomplete="current-password" required minlength="8">
       </label>
@@ -53,19 +53,19 @@
           <input type="checkbox" name="recordar">
           <span class="nz-checkbox__box"></span>Recordarme
         </label>
-        <a class="nz-cta nz-cta--muted nz-cta--sm" href="#">¿Olvidaste la clave?</a>
+        <a class="nz-cta nz-cta--muted nz-cta--sm" href="#">Forgot your password?</a>
       </div>
 
       <div class="nz-alert nz-alert--danger" hidden>
         <span class="nz-alert__icon"><svg class="nz-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></span>
         <div class="nz-alert__body">
-          <span class="nz-alert__title">Credenciales incorrectas</span>
-          <span class="nz-alert__msg">Revisa el correo y la contraseña.</span>
+          <span class="nz-alert__title">Wrong credentials</span>
+          <span class="nz-alert__msg">Check your email and password.</span>
         </div>
       </div>
 
-      <button class="nz-btn nz-btn--primary nz-btn--block" type="submit">Entrar</button>
-      <button class="nz-btn nz-btn--ghost nz-btn--block" type="button">Entrar con clave de un solo uso</button>
+      <button class="nz-btn nz-btn--primary nz-btn--block" type="submit">Sign in</button>
+      <button class="nz-btn nz-btn--ghost nz-btn--block" type="button">Sign in with a one-time code</button>
 
     </form>
 
@@ -73,12 +73,12 @@
 </main>
 
 <footer class="nz-footer nz-footer--compact">
-  Receta de ejemplo de Aurora · Hecho con ❤️ por David Antizar
+  Aurora example · Hecho con ❤️ por David Antizar
 </footer>
 
 
 <footer class="nz-footer">
-  <p><a href="https://ntizar.github.io/Aurora/index.html">← Volver a la portada</a></p>
+  <p><a href="https://ntizar.github.io/Aurora/index.html">← Back to the catalogue</a></p>
 </footer>
 </body>
 </html>

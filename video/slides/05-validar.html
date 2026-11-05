@@ -2,7 +2,7 @@
 <html lang="en" data-nz-theme="light" data-nz-marca="monocromo">
 <head>
 <meta charset="utf-8">
-<title>aurora_validar</title>
+<title>aurora_validate</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10/tokens.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10/marcas/monocromo.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10/packs/p1-layout.css">
@@ -17,9 +17,9 @@
 <style>
   html, body { height: 100%; }
   body { display: grid; place-items: center; overflow: hidden; }
-  .slide { width: 1600px; height: 900px; padding: var(--nz-space-9); box-sizing: border-box;
+  .slide { width: 1600px; height: 900px; padding: var(--nz-space-9) var(--nz-space-9) 200px; box-sizing: border-box;
             display: flex; flex-direction: column; justify-content: center; gap: var(--nz-space-6); }
-  .slide--app { padding: var(--nz-space-7); }
+  .slide--app { padding: var(--nz-space-6) var(--nz-space-7) 200px; }
   .mono { font-family: ui-monospace, "SFMono-Regular", Menlo, monospace; }
   pre { margin: 0; }
   .shot { width: 100%; height: 600px; object-fit: cover; object-position: top left; }
@@ -34,20 +34,19 @@
 <body class="nz">
 
 <div class="slide slide--app">
-  <span class="nz-eyebrow">Tool 2 · aurora_validar</span>
+  <span class="nz-eyebrow">Tool 2 · aurora_validate</span>
   <h2 class="nz-h3">Prove it before saying done</h2>
   <div class="nz-article">
-    <pre class="nz-code nz-code--block"><code>› aurora_validar(ruta="page.html")
+    <pre class="nz-code nz-code--block"><code>› aurora_validate(path="page.html")
 
 ok: false
- - clase(s) inventada(s): nz-card--glass
- - gradiente en CSS propio
- - !important en CSS propio
- - 3 color(es) a mano
- - emoji en la interfaz
- - falta el pie de atribución</code></pre>
+ - unknown class: nz-card--glass
+ - gradient in page CSS
+ - !important in page CSS
+ - 3 hand-written colours
+ - emoji in the UI
+ - missing attribution footer</code></pre>
   </div>
-  <p class="nz-prose nz-text--muted">Census-backed, offline, milliseconds. The same check anyone can rerun.</p>
 </div>
 
 </body>

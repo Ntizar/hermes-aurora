@@ -26,8 +26,8 @@ No key, no config, no dependencies. Restart is only needed if your gateway cache
 
 | Tool | What it does |
 |---|---|
-| `aurora_buscar` | Ask in plain words ("table that stacks on mobile") → family, pack to link, every class and the **real markup** from the catalogue. 2,223 objects, in-process. |
-| `aurora_validar` | Validate a page against the class census: invented classes, packs used but not linked, gradients, `!important`, hand-written colours, emojis in UI, duplicate `<h1>`, missing attribution. Returns `ok`, `fallos`, `avisos`. |
+| `aurora_search` | Ask in plain words ("table that stacks on mobile") → family, pack to link, every class and the **real markup** from the catalogue. 2,223 objects, in-process. |
+| `aurora_validate` | Validate a page against the class census: invented classes, packs used but not linked, gradients, `!important`, hand-written colours, emojis in UI, duplicate `<h1>`, missing attribution. Returns `ok`, `fallos`, `avisos`. |
 
 Both are offline: they read `data/censo.json`, a generated snapshot of the design system's
 `components.json` (regenerate with `scripts/generar-censo.py`). No network, no subprocess, no

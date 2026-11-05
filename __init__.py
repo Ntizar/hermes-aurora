@@ -7,8 +7,8 @@ Ships four read-only skills plus two offline tools:
     skills/aurora-validate .... audit a generated page (lint + browser measurement)
     skills/aurora-generative .. openui-lang: let a model compose Aurora markup
 
-    aurora_buscar(consulta) ... query the bundled census, get the real markup of an object
-    aurora_validar(ruta|html) . validate a page against the census, offline
+    aurora_search(need) ....... query the bundled census, get the real markup of an object
+    aurora_validate(path|html). validate a page against the census, offline
 
 Both tools read ``data/censo.json``, a generated snapshot of the design system's
 ``components.json``. No network, no subprocess, no writes: the plugin only answers.
@@ -19,10 +19,10 @@ from __future__ import annotations
 from pathlib import Path
 
 from .tools.aurora import (
-    AURORA_BUSCAR_SCHEMA,
-    AURORA_VALIDAR_SCHEMA,
-    aurora_buscar,
-    aurora_validar,
+    AURORA_SEARCH_SCHEMA,
+    AURORA_VALIDATE_SCHEMA,
+    aurora_search,
+    aurora_validate,
 )
 
 _HERE = Path(__file__).resolve().parent
@@ -86,16 +86,16 @@ def register(ctx) -> None:
         )
 
     ctx.register_tool(
-        "aurora_buscar",
+        "aurora_search",
         TOOLSET,
-        AURORA_BUSCAR_SCHEMA,
-        aurora_buscar,
-        description=AURORA_BUSCAR_SCHEMA["description"],
+        AURORA_SEARCH_SCHEMA,
+        aurora_search,
+        description=AURORA_SEARCH_SCHEMA["description"],
     )
     ctx.register_tool(
-        "aurora_validar",
+        "aurora_validate",
         TOOLSET,
-        AURORA_VALIDAR_SCHEMA,
-        aurora_validar,
-        description=AURORA_VALIDAR_SCHEMA["description"],
+        AURORA_VALIDATE_SCHEMA,
+        aurora_validate,
+        description=AURORA_VALIDATE_SCHEMA["description"],
     )

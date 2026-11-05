@@ -127,7 +127,7 @@ Modifier lexicon (same in all 18 packs): size `--2xs/--xs/--sm/--lg/--xl`; tone
 ## Workflow for any page
 
 1. **Resolve** the version. Then, before writing markup, ask the plugin:
-   `aurora_buscar(consulta="tabla que se apila en movil")` returns the family, the pack to
+   `aurora_search(need="tabla que se apila en movil")` returns the family, the pack to
    link, every class and the **real markup** from the catalogue demo, offline. Use it instead
    of guessing class names; read `LLM.md` when you need the decision layer around it.
 2. **Start from a canonical file**, don't invent: `bloques/recetas/` (per page type),

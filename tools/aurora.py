@@ -1,4 +1,4 @@
-"""Aurora tools for Hermes: census lookup and offline validation.
+"""Aurora tools for Hermes: census search and offline validation.
 
 Both tools run entirely in-process against `data/censo.json` (a generated snapshot of
 Aurora's `components.json`). No network, no subprocess, no writes.
@@ -20,8 +20,8 @@ _CENSO: dict[str, Any] | None = None
 
 MAX_INPUT = 2_000_000  # 2 MB of HTML is already a very large page
 
-AURORA_BUSCAR_SCHEMA = {
-    "name": "aurora_buscar",
+AURORA_SEARCH_SCHEMA = {
+    "name": "aurora_search",
     "description": (
         "Look up Aurora design-system objects by what you need (Spanish or English: "
         "'tabla que se apila en movil', 'kpi', 'chat', 'alert'). Returns the family, the CSS "
@@ -31,19 +31,19 @@ AURORA_BUSCAR_SCHEMA = {
     "parameters": {
         "type": "object",
         "properties": {
-            "consulta": {"type": "string", "description": "What you need to build, in plain words."},
-            "limite": {"type": "integer", "description": "Max families to return (default 5, max 20)."},
-            "con_markup": {
+            "need": {"type": "string", "description": "What you need to build, in plain words."},
+            "limit": {"type": "integer", "description": "Max families to return (default 5, max 20)."},
+            "with_markup": {
                 "type": "boolean",
                 "description": "Include the canonical markup of each family (default true).",
             },
         },
-        "required": ["consulta"],
+        "required": ["need"],
     },
 }
 
-AURORA_VALIDAR_SCHEMA = {
-    "name": "aurora_validar",
+AURORA_VALIDATE_SCHEMA = {
+    "name": "aurora_validate",
     "description": (
         "Validate an Aurora page offline and return failures (must fix) and warnings (read them). "
         "Checks invented classes against the bundled census, packs used but not linked, "
@@ -53,7 +53,7 @@ AURORA_VALIDAR_SCHEMA = {
     "parameters": {
         "type": "object",
         "properties": {
-            "ruta": {"type": "string", "description": "Path to the HTML file to validate."},
+            "path": {"type": "string", "description": "Path to the HTML file to validate."},
             "html": {"type": "string", "description": "HTML source, when there is no file on disk."},
         },
     },
@@ -171,12 +171,12 @@ def _score(words: list[str], family: str, familia_norm: str, clases: set[str], h
     return score, sorted(set(matched))
 
 
-def aurora_buscar(args: dict, **_: Any) -> str:
-    query = str(args.get("consulta") or "").strip()
+def aurora_search(args: dict, **_: Any) -> str:
+    query = str(args.get("need") or args.get("consulta") or "").strip()
     if not query:
-        return json.dumps({"error": "consulta vacía"}, ensure_ascii=False)
-    limit = max(1, min(int(args.get("limite") or 5), 20))
-    with_markup = args.get("con_markup", True)
+        return json.dumps({"error": "empty query"}, ensure_ascii=False)
+    limit = max(1, min(int(args.get("limit") or args.get("limite") or 5), 20))
+    with_markup = args.get("with_markup", args.get("con_markup", True))
     census = _censo()
 
     words = [w for w in re.split(r"[^0-9a-zA-ZáéíóúüñÁÉÍÓÚÜÑ]+", _norm(query))
@@ -191,27 +191,27 @@ def aurora_buscar(args: dict, **_: Any) -> str:
     results = []
     for score, _largo, family, entry, matched in ranked[:limit]:
         item = {
-            "familia": family,
+            "family": family,
             "pack": entry["pack"],
-            "clases": entry["clases"][:25],
+            "classes": entry["clases"][:25],
             "demo": entry["demo"],
-            "titulo": entry.get("titulo", ""),
-            "no_usar": entry.get("noUsar", [])[:3],
-            "puntuacion": score,
-            "coincide": matched,
+            "title": entry.get("titulo", ""),
+            "avoid": entry.get("noUsar", [])[:3],
+            "score": score,
+            "matched": matched,
         }
         if with_markup:
             item["markup"] = entry.get("markup", "")
         results.append(item)
 
     return json.dumps({
-        "sistema": census["sistema"],
+        "system": census["sistema"],
         "version": census["version"],
-        "canal": census["canal"],
-        "consulta": query,
-        "resultados": results,
-        "sugerencia": (
-            "Enlaza solo los packs que uses: "
+        "channel": census["canal"],
+        "query": query,
+        "results": results,
+        "hint": (
+            "Link only the packs you use: "
             f"https://cdn.jsdelivr.net/gh/Ntizar/Aurora@{census['canal']}/packs/<pack>.css"
         ),
     }, ensure_ascii=False)
@@ -236,21 +236,21 @@ def _text_only(html: str) -> str:
     return re.sub(r"<[^>]+>", " ", text)
 
 
-def aurora_validar(args: dict, **_: Any) -> str:
+def aurora_validate(args: dict, **_: Any) -> str:
     source = args.get("html")
-    ruta = args.get("ruta")
+    ruta = args.get("path") or args.get("ruta")
     if source is None and ruta:
         path = Path(str(ruta)).expanduser()
         if not path.is_file():
-            return json.dumps({"error": f"no existe {path}"}, ensure_ascii=False)
+            return json.dumps({"error": f"no such file: {path}"}, ensure_ascii=False)
         if path.stat().st_size > MAX_INPUT:
-            return json.dumps({"error": "fichero demasiado grande (2 MB)"}, ensure_ascii=False)
+            return json.dumps({"error": "file too large (2 MB)"}, ensure_ascii=False)
         source = path.read_text(encoding="utf-8", errors="replace")
     if not source:
-        return json.dumps({"error": "pasa 'ruta' o 'html'"}, ensure_ascii=False)
+        return json.dumps({"error": "pass 'path' or 'html'"}, ensure_ascii=False)
     html = str(source)
     if len(html) > MAX_INPUT:
-        return json.dumps({"error": "html demasiado grande (2 MB)"}, ensure_ascii=False)
+        return json.dumps({"error": "html too large (2 MB)"}, ensure_ascii=False)
 
     census = _censo()
     known: dict[str, dict] = census["clases"]
@@ -265,7 +265,7 @@ def aurora_validar(args: dict, **_: Any) -> str:
                 used[token] = used.get(token, 0) + 1
     invented = sorted(c for c in used if c not in known)
     if invented:
-        fallos.append("clase(s) inventada(s), no están en el censo: " + ", ".join(invented[:12]))
+        fallos.append("unknown class(es), not in the census: " + ", ".join(invented[:12]))
 
     # 2 · every pack a used class belongs to must be linked
     packs = sorted({known[c]["pack"] for c in used if c in known and known[c]["pack"]})
@@ -273,60 +273,60 @@ def aurora_validar(args: dict, **_: Any) -> str:
     all_css = any(h.endswith("packs/all.css") for h in linked)
     missing = [] if all_css else [p for p in packs if not any(h.endswith(p) or h.endswith("/" + p) for h in linked)]
     if missing:
-        fallos.append("pack(s) usados pero no enlazados: " + ", ".join(missing))
+        fallos.append("pack(s) used but not linked: " + ", ".join(missing))
 
     styles = "\n".join(_STYLE_RE.findall(html))
     css = _COMMENT_RE.sub(" ", styles)
 
     # 3 · gradients / backdrop-filter / !important
     if _GRADIENT_RE.search(css) and "nz-cristal" not in html:
-        fallos.append("gradiente en CSS propio (Aurora no usa gradientes; el cristal va por p16-cristal.css)")
+        fallos.append("gradient in page CSS (Aurora uses none; the crystal layer ships as p16-cristal.css)")
     if "backdrop-filter" in css and "nz-cristal" not in html:
-        fallos.append("backdrop-filter en CSS propio (solo la capa .nz-cristal lo usa)")
+        fallos.append("backdrop-filter in page CSS (only the .nz-cristal layer uses it)")
     if "!important" in css and not re.search(r"nz-(visually-hidden|vh|print-hide)", html):
-        fallos.append("!important en CSS propio (solo los helpers de ocultación lo llevan)")
+        fallos.append("!important in page CSS (only the hiding helpers carry it)")
 
     # 4 · hand-written colours inside the page's own CSS
     hand = _COLOR_RE.findall(css)
     if hand:
-        fallos.append(f"{len(hand)} color(es) a mano en el <style>: usa var(--nz-*)")
+        fallos.append(f"{len(hand)} hand-written colour(s) in <style>: use var(--nz-*)")
 
     # 5 · emojis in UI, outside the attribution
     visible = _text_only(html).replace(_FOOTER, " ")
     emojis = _EMOJI_RE.findall(visible)
     if emojis:
         sample = "".join(sorted(set(emojis))[:6])
-        fallos.append(f"emoji en la interfaz ({sample}): usa un icono SVG del sprite")
+        fallos.append(f"emoji in the UI ({sample}): use an SVG icon from the sprite")
 
     # 6 · attribution footer
     if _FOOTER not in html:
-        fallos.append(f"falta el pie exacto: «{_FOOTER}»")
+        fallos.append(f"missing the exact footer: «{_FOOTER}»")
 
     # 7 · structure
     if len(re.findall(r"<h1\b", html, re.I)) > 1:
-        fallos.append("más de un <h1>: una sola cabecera por página")
+        fallos.append("more than one <h1>: one heading per page")
     if not re.search(r'<html[^>]*lang\s*=\s*"', html, re.I):
-        avisos.append('falta lang en <html>')
+        avisos.append('missing lang on <html>')
     if not re.search(r'<html[^>]*data-nz-theme\s*=\s*"(light|dark)"', html, re.I):
-        avisos.append('falta data-nz-theme="light|dark" en <html>')
+        avisos.append('missing data-nz-theme="light|dark" on <html>')
     if not re.search(r'<body[^>]*class\s*=\s*"[^"]*\bnz\b', html, re.I):
-        avisos.append('falta class="nz" en <body>')
+        avisos.append('missing class="nz" on <body>')
     if re.search(r"@media[^{]*max-width", css) and "max-width: 639px" not in css:
-        avisos.append("@media (max-width): Aurora es responsive first (base móvil + min-width)")
+        avisos.append("@media (max-width): Aurora is mobile-first (base + min-width)")
 
     return json.dumps({
         "ok": not fallos,
-        "sistema": census["sistema"],
+        "system": census["sistema"],
         "version": census["version"],
-        "fallos": fallos,
-        "avisos": avisos,
-        "medido": {
-            "clases_nz": len(used),
-            "familias": len({known[c]["familia"] for c in used if c in known}),
-            "packs_enlazados": sorted(p.split("/")[-1] for p in packs),
+        "failures": fallos,
+        "warnings": avisos,
+        "measured": {
+            "nz_classes": len(used),
+            "families": len({known[c]["familia"] for c in used if c in known}),
+            "linked_packs": sorted(p.split("/")[-1] for p in packs),
         },
-        "siguiente": (
-            "Arregla los fallos y vuelve a validar. Los avisos se leen: no bloquean."
-            if fallos else "Sin fallos. Comprueba el render en navegador (móvil 320/360/390)."
+        "next": (
+            "Fix the failures and validate again. Warnings are read, they do not block."
+            if fallos else "No failures. Now measure the render in a browser (mobile 320/360/390)."
         ),
     }, ensure_ascii=False)

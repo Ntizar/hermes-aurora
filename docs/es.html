@@ -66,18 +66,18 @@
 
     <div class="nz-split">
       <article class="nz-article">
-        <span class="nz-badge">aurora_buscar</span>
+        <span class="nz-badge">aurora_search</span>
         <h3 class="nz-h5">Pregunta al censo, recibe el markup real</h3>
         <p class="nz-prose">El agente pregunta en lenguaje natural —en castellano o inglés— y recibe la familia, el pack que debe enlazar, todas las clases y el markup canónico extraído de la demo del catálogo. 2.223 objetos, en proceso.</p>
-        <code class="nz-code nz-code--block">aurora_buscar("tabla que se apila en movil")</code>
+        <code class="nz-code nz-code--block">aurora_search("table that stacks on mobile")</code>
         <p class="nz-prose">En vez de inventar <code class="nz-code">nz-card</code> (que no existe), recibe <code class="nz-code">nz-table--apilable</code> con su envoltorio y su <code class="nz-code">data-etiqueta</code>.</p>
       </article>
 
       <article class="nz-article">
-        <span class="nz-badge">aurora_validar</span>
+        <span class="nz-badge">aurora_validate</span>
         <h3 class="nz-h5">Demuestra la página antes de decir «listo»</h3>
         <p class="nz-prose">Clases inventadas, packs usados pero no enlazados, gradientes, <code class="nz-code">!important</code>, colores a mano, emoji en la interfaz, titulares duplicados, pie de atribución ausente. Fallos y avisos, offline, en milisegundos.</p>
-        <code class="nz-code nz-code--block">aurora_validar(ruta="pagina.html")</code>
+        <code class="nz-code nz-code--block">aurora_validate(path="pagina.html")</code>
         <p class="nz-prose">El agente itera hasta <code class="nz-code">ok: true</code>. La comprobación la puede repetir cualquiera, en cualquier máquina, sin clonar el design system.</p>
       </article>
     </div>
@@ -164,8 +164,8 @@ Aurora es mi design system: CSS puro, ~2.200 objetos documentados. El problema n
       <span class="nz-lbl">4/8</span>
       <p class="nz-prose" id="t4">Dos herramientas offline dentro del plugin:
 
-· aurora_buscar → el markup real del censo
-· aurora_validar → 0 fallos o no se entrega
+· aurora_search → el markup real del censo
+· aurora_validate → 0 fallos o no se entrega
 
 Y cuatro skills que enseñan el resto. Sin red, sin hooks.</p>
       <button class="nz-btn nz-btn--outline nz-btn--sm" type="button" data-copiar="t4">Copiar</button>

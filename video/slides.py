@@ -26,9 +26,9 @@ HEAD = """<!DOCTYPE html>
 <style>
   html, body {{ height: 100%; }}
   body {{ display: grid; place-items: center; overflow: hidden; }}
-  .slide {{ width: 1600px; height: 900px; padding: var(--nz-space-9); box-sizing: border-box;
+  .slide {{ width: 1600px; height: 900px; padding: var(--nz-space-9) var(--nz-space-9) 200px; box-sizing: border-box;
             display: flex; flex-direction: column; justify-content: center; gap: var(--nz-space-6); }}
-  .slide--app {{ padding: var(--nz-space-7); }}
+  .slide--app {{ padding: var(--nz-space-6) var(--nz-space-7) 200px; }}
   .mono {{ font-family: ui-monospace, "SFMono-Regular", Menlo, monospace; }}
   pre {{ margin: 0; }}
   .shot {{ width: 100%; height: 600px; object-fit: cover; object-position: top left; }}
@@ -76,21 +76,20 @@ slides["02-problema"] = ("The problem", """
 </div>
 """)
 
-slides["03-buscar"] = ("aurora_buscar", """
+slides["03-buscar"] = ("aurora_search", """
 <div class="slide slide--app">
-  <span class="nz-eyebrow">Tool 1 · aurora_buscar</span>
+  <span class="nz-eyebrow">Tool 1 · aurora_search</span>
   <h2 class="nz-h3">Ask the census, get the real markup</h2>
   <div class="nz-article">
-    <pre class="nz-code nz-code--block"><code>› aurora_buscar("table that stacks on mobile")
+    <pre class="nz-code nz-code--block"><code>› aurora_search("table that stacks on mobile")
 
 {
-  "familia": "nz-table",
+  "family": "nz-table",
   "pack":    "packs/p8-data.css",
-  "clases":  ["nz-table", "nz-table--apilable", "nz-table--striped", ...],
+  "classes": ["nz-table", "nz-table--apilable", "nz-table--striped", ...],
   "markup":  "<div class=\\"nz-table-wrap nz-table-wrap--apilable\\">…"
 }</code></pre>
   </div>
-  <p class="nz-prose nz-text--muted">1.448 objects, offline, in-process. The model stops inventing.</p>
 </div>
 """)
 
@@ -102,22 +101,21 @@ slides["04-pagina"] = ("Built from the census", """
 </div>
 """)
 
-slides["05-validar"] = ("aurora_validar", """
+slides["05-validar"] = ("aurora_validate", """
 <div class="slide slide--app">
-  <span class="nz-eyebrow">Tool 2 · aurora_validar</span>
+  <span class="nz-eyebrow">Tool 2 · aurora_validate</span>
   <h2 class="nz-h3">Prove it before saying done</h2>
   <div class="nz-article">
-    <pre class="nz-code nz-code--block"><code>› aurora_validar(ruta="page.html")
+    <pre class="nz-code nz-code--block"><code>› aurora_validate(path="page.html")
 
 ok: false
- - clase(s) inventada(s): nz-card--glass
- - gradiente en CSS propio
- - !important en CSS propio
- - 3 color(es) a mano
- - emoji en la interfaz
- - falta el pie de atribución</code></pre>
+ - unknown class: nz-card--glass
+ - gradient in page CSS
+ - !important in page CSS
+ - 3 hand-written colours
+ - emoji in the UI
+ - missing attribution footer</code></pre>
   </div>
-  <p class="nz-prose nz-text--muted">Census-backed, offline, milliseconds. The same check anyone can rerun.</p>
 </div>
 """)
 
@@ -126,7 +124,7 @@ slides["06-limpio"] = ("Clean", """
   <span class="nz-eyebrow">After two iterations</span>
   <h2 class="nz-h3">Clean report, page delivered</h2>
   <div class="nz-callout nz-callout--success">
-    <p class="mono">ok: true · 0 fallos · 47 classes · 25 families · 8 packs linked</p>
+    <p class="mono">ok: true · 0 failures · 47 classes · 25 families · 8 packs linked</p>
   </div>
   <img class="nz-img nz-img--bordered nz-img--rounded shot" src="../../docs/screenshots/dashboard.png" alt="Dashboard built with Aurora">
 </div>

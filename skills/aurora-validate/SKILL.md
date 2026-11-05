@@ -14,13 +14,13 @@ done when **both** are green — never when it "looks fine".
 ## 0. First, the tool that ships with the plugin
 
 ```
-aurora_validar(ruta="page.html")     # or html="<html>…"
+aurora_validate(path="page.html")     # or html="<html>…"
 ```
 
 It answers offline, in milliseconds, straight from the bundled census: invented classes,
 packs used but not linked, gradients, `backdrop-filter`, `!important`, hand-written colours,
-emojis in UI, duplicate `<h1>`, missing attribution. You get `ok`, `fallos` (must fix) and
-`avisos` (read them). It is a subset of the repository auditor — narrower, but it runs
+emojis in UI, duplicate `<h1>`, missing attribution. You get `ok`, `failures` (must fix) and
+`warnings` (read them). It is a subset of the repository auditor — narrower, but it runs
 anywhere, including machines without a clone of the design system.
 
 Loop until `ok: true`, then continue below for the checks a linter cannot do. The repository
@@ -36,13 +36,13 @@ python3 scripts/auditar-uso.py mi-pagina.html
 
 It checks: invented classes, packs that are needed but not linked, gradients,
 `backdrop-filter`, `!important`, hand-written colours, desktop-first CSS, duplicate `<h1>`,
-emojis in UI, and the attribution footer. Read the last line:
+emojis in UI, and the attribution footer. It prints in Spanish — read the last line:
 
 ```
 → 0 fallos · 2 avisos
 ```
 
-**Zero `fallos` is the bar.** `avisos` do not block, but each one is a question you answer in
+**Zero `fallos` (failures) is the bar.** `avisos` (warnings) do not block, but each one is a question you answer in
 your head: a saturated-colour budget overrun, a brand moment with no accent. The canonical
 examples ship with one or two warnings, so seeing a warning is not automatically a bug — seeing
 a failure always is.
