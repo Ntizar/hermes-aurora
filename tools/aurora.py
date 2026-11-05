@@ -225,7 +225,7 @@ _EMOJI_RE = re.compile(
 _STYLE_RE = re.compile(r"<style[^>]*>(.*?)</style>", re.S | re.I)
 _COMMENT_RE = re.compile(r"<!--.*?-->", re.S)
 _CODE_RE = re.compile(r"<(pre|code|samp|kbd|textarea)[^>]*>.*?</\1>", re.S | re.I)
-_FOOTER = "Hecho con ❤️ por David Antizar"
+_FOOTER = ("Hecho con ❤️ por David Antizar", "Made with ❤️ by David Antizar")
 
 
 def _text_only(html: str) -> str:
@@ -292,14 +292,16 @@ def aurora_validate(args: dict, **_: Any) -> str:
         fallos.append(f"{len(hand)} hand-written colour(s) in <style>: use var(--nz-*)")
 
     # 5 · emojis in UI, outside the attribution
-    visible = _text_only(html).replace(_FOOTER, " ")
+    visible = _text_only(html)
+    for _f in _FOOTER:
+        visible = visible.replace(_f, " ")
     emojis = _EMOJI_RE.findall(visible)
     if emojis:
         sample = "".join(sorted(set(emojis))[:6])
         fallos.append(f"emoji in the UI ({sample}): use an SVG icon from the sprite")
 
     # 6 · attribution footer
-    if _FOOTER not in html:
+    if not any(f in html for f in _FOOTER):
         fallos.append(f"missing the exact footer: «{_FOOTER}»")
 
     # 7 · structure

@@ -28,25 +28,55 @@
   .slide .nz-h1 { font-size: 54px; }
   .slide .nz-h3 { font-size: 40px; }
   .slide .nz-lead { font-size: 30px; }
+  /* — animación (timeline en rasterizar.py: virtual-time-budget) — */
+  .nz-fade   { animation: nzIn .5s var(--ease, ease-out) both; }
+  .nz-fade-2 { animation: nzIn .5s .35s ease-out both; }
+  .nz-fade-3 { animation: nzIn .5s .7s ease-out both; }
+  .nz-pop    { animation: nzPop .4s var(--d, 0s) ease-out both; }
+  @keyframes nzIn  { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+  @keyframes nzPop { from { opacity: 0; transform: scale(.7); } 60% { transform: scale(1.06); } to { opacity: 1; transform: none; } }
+  .slide--anim .nz-reveal { opacity: 0; animation: nzIn .45s var(--d, 0s) ease-out both; }
+  .no-anim .slide--anim .nz-reveal, .no-anim .nz-fade, .no-anim .nz-fade-2, .no-anim .nz-fade-3, .no-anim .nz-pop { opacity: 1 !important; animation: none !important; }
+  /* — terminal con chrome — */
+  .term { border-radius: 10px; overflow: hidden; border: 1px solid rgba(0,0,0,.14); box-shadow: 0 2px 14px rgba(0,0,0,.06); }
+  .term__bar { display: flex; align-items: center; gap: 8px; padding: 10px 14px; background: #10182b; }
+  .term__bar i { width: 11px; height: 11px; border-radius: 50%; background: #3a4a6b; }
+  .term__bar i:first-child { background: #d8d8d8; }
+  .term__bar span { margin-left: 8px; color: #8a96b5; font-size: 15px; font-family: ui-monospace, Menlo, monospace; }
+  .term__body { padding: var(--nz-space-6); background: #0d1526; color: #e8ecf5; }
+  .term__body .prompt { color: #f0c75e; font-weight: 700; }
+  .term__body .cursor { display: inline-block; width: 13px; height: 1.1em; background: #f0c75e; vertical-align: text-bottom; animation: nzBlink 1s steps(1) infinite; }
+  .term__body .k { color: #9db8ff; }
+  .term__body .s { color: #bfe3c0; }
+  .term__body .bad { color: #ff9d87; }
+  .term__body .ok7 { color: #bfe3c0; }
+  @keyframes nzBlink { 50% { opacity: 0; } }
   .slide .nz-prose { font-size: 26px; }
 </style>
 </head>
 <body class="nz">
 
-<div class="slide slide--app">
-  <span class="nz-eyebrow">Tool 1 · aurora_search</span>
-  <h2 class="nz-h3">Ask the census, get the real markup</h2>
-  <div class="nz-article">
-    <pre class="nz-code nz-code--block"><code>› aurora_search("table that stacks on mobile")
-
-{
-  "family": "nz-table",
-  "pack":    "packs/p8-data.css",
-  "classes": ["nz-table", "nz-table--apilable", "nz-table--striped", ...],
-  "markup":  "<div class=\"nz-table-wrap nz-table-wrap--apilable\">…"
-}</code></pre>
+<div class="slide slide--app slide--anim">
+  <span class="nz-eyebrow nz-fade">Tool 1 · aurora_search</span>
+  <h2 class="nz-h3 nz-fade-2">Ask the census, get the real markup</h2>
+  <div class="nz-article nz-reveal" style="--d:.2s">
+    <div class="term">
+      <div class="term__bar"><i></i><i></i><i></i><span>aurora_search — result</span></div>
+      <pre class="term__body"><code><span class="prompt">›</span> <span id="cmd"></span><span class="cursor"></span>
+<span class="resp nz-reveal" style="--d:3.4s">{
+  <span class="k">"family"</span>:  <span class="s">"nz-table"</span>,
+  <span class="k">"pack"</span>:    <span class="s">"packs/p8-data.css"</span>,
+  <span class="k">"classes"</span>: [<span class="s">"nz-table"</span>, <span class="s">"nz-table--apilable"</span>, <span class="s">"nz-table--striped"</span>, …],
+  <span class="k">"markup"</span>:  <span class="s">"&lt;div class=\"nz-table-wrap nz-table-wrap--apilable\"&gt;…"</span>
+}</span></code></pre>
+    </div>
   </div>
 </div>
+<script>
+  const S = 'aurora_search("table that stacks on mobile")';
+  const el = document.getElementById('cmd'); let i = 0;
+  (function t(){ if (i < S.length) { el.textContent = S.slice(0, ++i); setTimeout(t, 52); } })();
+</script>
 
 </body>
 </html>

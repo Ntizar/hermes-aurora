@@ -28,19 +28,42 @@
   .slide .nz-h1 { font-size: 54px; }
   .slide .nz-h3 { font-size: 40px; }
   .slide .nz-lead { font-size: 30px; }
+  /* — animación (timeline en rasterizar.py: virtual-time-budget) — */
+  .nz-fade   { animation: nzIn .5s var(--ease, ease-out) both; }
+  .nz-fade-2 { animation: nzIn .5s .35s ease-out both; }
+  .nz-fade-3 { animation: nzIn .5s .7s ease-out both; }
+  .nz-pop    { animation: nzPop .4s var(--d, 0s) ease-out both; }
+  @keyframes nzIn  { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+  @keyframes nzPop { from { opacity: 0; transform: scale(.7); } 60% { transform: scale(1.06); } to { opacity: 1; transform: none; } }
+  .slide--anim .nz-reveal { opacity: 0; animation: nzIn .45s var(--d, 0s) ease-out both; }
+  .no-anim .slide--anim .nz-reveal, .no-anim .nz-fade, .no-anim .nz-fade-2, .no-anim .nz-fade-3, .no-anim .nz-pop { opacity: 1 !important; animation: none !important; }
+  /* — terminal con chrome — */
+  .term { border-radius: 10px; overflow: hidden; border: 1px solid rgba(0,0,0,.14); box-shadow: 0 2px 14px rgba(0,0,0,.06); }
+  .term__bar { display: flex; align-items: center; gap: 8px; padding: 10px 14px; background: #10182b; }
+  .term__bar i { width: 11px; height: 11px; border-radius: 50%; background: #3a4a6b; }
+  .term__bar i:first-child { background: #d8d8d8; }
+  .term__bar span { margin-left: 8px; color: #8a96b5; font-size: 15px; font-family: ui-monospace, Menlo, monospace; }
+  .term__body { padding: var(--nz-space-6); background: #0d1526; color: #e8ecf5; }
+  .term__body .prompt { color: #f0c75e; font-weight: 700; }
+  .term__body .cursor { display: inline-block; width: 13px; height: 1.1em; background: #f0c75e; vertical-align: text-bottom; animation: nzBlink 1s steps(1) infinite; }
+  .term__body .k { color: #9db8ff; }
+  .term__body .s { color: #bfe3c0; }
+  .term__body .bad { color: #ff9d87; }
+  .term__body .ok7 { color: #bfe3c0; }
+  @keyframes nzBlink { 50% { opacity: 0; } }
   .slide .nz-prose { font-size: 26px; }
 </style>
 </head>
 <body class="nz">
 
-<div class="slide">
-  <span class="nz-eyebrow">Hermes Agent · plugin hackathon 2026</span>
-  <h1 class="nz-display nz-display--xl">Aurora × Hermes</h1>
-  <p class="nz-lead nz-lead--lg">A design system the agent cannot fake: it looks up the census, then proves the page.</p>
+<div class="slide slide--anim">
+  <span class="nz-eyebrow nz-fade">Hermes Agent · plugin hackathon 2026</span>
+  <h1 class="nz-display nz-display--xl nz-fade-2">Aurora × Hermes</h1>
+  <p class="nz-lead nz-lead--lg nz-fade-3">A design system the agent cannot fake: it looks up the census, then proves the page.</p>
   <div class="nz-cluster">
-    <span class="nz-badge">2 tools</span>
-    <span class="nz-badge">4 skills</span>
-    <span class="nz-badge nz-badge--accent">0 network</span>
+    <span class="nz-badge nz-pop" style="--d:1.6s">2 tools</span>
+    <span class="nz-badge nz-pop" style="--d:1.8s">4 skills</span>
+    <span class="nz-badge nz-badge--accent nz-pop" style="--d:2.0s">0 network</span>
   </div>
 </div>
 

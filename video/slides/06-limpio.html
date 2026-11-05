@@ -28,18 +28,41 @@
   .slide .nz-h1 { font-size: 54px; }
   .slide .nz-h3 { font-size: 40px; }
   .slide .nz-lead { font-size: 30px; }
+  /* — animación (timeline en rasterizar.py: virtual-time-budget) — */
+  .nz-fade   { animation: nzIn .5s var(--ease, ease-out) both; }
+  .nz-fade-2 { animation: nzIn .5s .35s ease-out both; }
+  .nz-fade-3 { animation: nzIn .5s .7s ease-out both; }
+  .nz-pop    { animation: nzPop .4s var(--d, 0s) ease-out both; }
+  @keyframes nzIn  { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+  @keyframes nzPop { from { opacity: 0; transform: scale(.7); } 60% { transform: scale(1.06); } to { opacity: 1; transform: none; } }
+  .slide--anim .nz-reveal { opacity: 0; animation: nzIn .45s var(--d, 0s) ease-out both; }
+  .no-anim .slide--anim .nz-reveal, .no-anim .nz-fade, .no-anim .nz-fade-2, .no-anim .nz-fade-3, .no-anim .nz-pop { opacity: 1 !important; animation: none !important; }
+  /* — terminal con chrome — */
+  .term { border-radius: 10px; overflow: hidden; border: 1px solid rgba(0,0,0,.14); box-shadow: 0 2px 14px rgba(0,0,0,.06); }
+  .term__bar { display: flex; align-items: center; gap: 8px; padding: 10px 14px; background: #10182b; }
+  .term__bar i { width: 11px; height: 11px; border-radius: 50%; background: #3a4a6b; }
+  .term__bar i:first-child { background: #d8d8d8; }
+  .term__bar span { margin-left: 8px; color: #8a96b5; font-size: 15px; font-family: ui-monospace, Menlo, monospace; }
+  .term__body { padding: var(--nz-space-6); background: #0d1526; color: #e8ecf5; }
+  .term__body .prompt { color: #f0c75e; font-weight: 700; }
+  .term__body .cursor { display: inline-block; width: 13px; height: 1.1em; background: #f0c75e; vertical-align: text-bottom; animation: nzBlink 1s steps(1) infinite; }
+  .term__body .k { color: #9db8ff; }
+  .term__body .s { color: #bfe3c0; }
+  .term__body .bad { color: #ff9d87; }
+  .term__body .ok7 { color: #bfe3c0; }
+  @keyframes nzBlink { 50% { opacity: 0; } }
   .slide .nz-prose { font-size: 26px; }
 </style>
 </head>
 <body class="nz">
 
-<div class="slide slide--app">
-  <span class="nz-eyebrow">After two iterations</span>
-  <h2 class="nz-h3">Clean report, page delivered</h2>
-  <div class="nz-callout nz-callout--success">
+<div class="slide slide--app slide--anim">
+  <span class="nz-eyebrow nz-fade">After two iterations</span>
+  <h2 class="nz-h3 nz-fade-2">Clean report, page delivered</h2>
+  <div class="nz-callout nz-callout--success nz-reveal" style="--d:.6s">
     <p class="mono">ok: true · 0 failures · 47 classes · 25 families · 8 packs linked</p>
   </div>
-  <img class="nz-img nz-img--bordered nz-img--rounded shot" src="../../docs/screenshots/dashboard.png" alt="Dashboard built with Aurora">
+  <img class="nz-img nz-img--bordered nz-img--rounded shot nz-reveal" style="--d:1.4s" src="../../docs/screenshots/dashboard.png" alt="Dashboard built with Aurora">
 </div>
 
 </body>
