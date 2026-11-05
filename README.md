@@ -22,6 +22,25 @@ hermes plugins install Ntizar/hermes-aurora --enable
 
 No key, no config, no dependencies. Restart is only needed if your gateway caches the skill index.
 
+## The two tools (the part a skill cannot do)
+
+| Tool | What it does |
+|---|---|
+| `aurora_buscar` | Ask in plain words ("table that stacks on mobile") → family, pack to link, every class and the **real markup** from the catalogue. 2,223 objects, in-process. |
+| `aurora_validar` | Validate a page against the class census: invented classes, packs used but not linked, gradients, `!important`, hand-written colours, emojis in UI, duplicate `<h1>`, missing attribution. Returns `ok`, `fallos`, `avisos`. |
+
+Both are offline: they read `data/censo.json`, a generated snapshot of the design system's
+`components.json` (regenerate with `scripts/generar-censo.py`). No network, no subprocess, no
+writes, no hooks — the plugin only answers.
+
+```json
+{"familia": "nz-table", "pack": "packs/p8-data.css",
+ "clases": ["nz-table", "nz-table--apilable", "..."],
+ "markup": "<div class=\"nz-table-wrap nz-table-wrap--apilable\">…"}
+```
+
+Demo video (57 s, English, subtitles burned): [`video/demo.mp4`](video/demo.mp4)
+
 ## What it ships
 
 | Skill | Use it when |

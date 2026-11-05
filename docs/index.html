@@ -21,7 +21,7 @@
 <nav class="nz-navbar nz-navbar--bordered" aria-label="Site">
   <a class="nz-navbar__brand nz-navbar__link" href="https://github.com/Ntizar/Aurora"><i></i>Aurora · Hermes</a>
   <span class="nz-navbar__links">
-    <a class="nz-navbar__link" href="#what">What</a>
+    <a class="nz-navbar__link" href="#tools">Tools</a>
     <a class="nz-navbar__link" href="#skills">Skills</a>
     <a class="nz-navbar__link" href="#how">How</a>
     <a class="nz-navbar__link" href="#install">Install</a>
@@ -33,12 +33,12 @@
 
   <section class="nz-hero-bleed">
     <div class="nz-container nz-stack">
-      <span class="nz-eyebrow">Release · November 2026</span>
+      <span class="nz-eyebrow">Hermes plugin hackathon · November 2026</span>
       <h1 class="nz-display">Stop the agent from improvising</h1>
-      <p class="nz-lead nz-lead--lg">Two open artifacts for Hermes Agent: one teaches it to build web UI with a real design system instead of guessing CSS; the other turns «done» into a receipt anyone can check.</p>
+      <p class="nz-lead nz-lead--lg">A design system the agent cannot fake. Two offline tools read the census before writing a class, and prove the page before calling it done. Four skills explain the rest.</p>
       <div class="nz-cluster">
         <a class="nz-btn nz-btn--primary nz-btn--lg" href="#install">Install the plugin</a>
-        <a class="nz-cta" href="#skills">See the four skills<span class="nz-cta__arrow">→</span></a>
+        <a class="nz-cta" href="#tools">See the tools<span class="nz-cta__arrow">→</span></a>
       </div>
     </div>
   </section>
@@ -46,39 +46,44 @@
   <section class="nz-container" aria-label="Numbers">
     <div class="nz-thirds">
       <div class="nz-kpi nz-kpi--bordered">
-        <span class="nz-kpi__label">Skills in the plugin</span>
-        <span class="nz-kpi__value">4</span>
+        <span class="nz-kpi__label">Tools, offline</span>
+        <span class="nz-kpi__value">2</span>
       </div>
       <div class="nz-kpi nz-kpi--bordered">
-        <span class="nz-kpi__label">Tools, hooks and network</span>
-        <span class="nz-kpi__value nz-kpi__value--accent">0</span>
+        <span class="nz-kpi__label">Objects in the census</span>
+        <span class="nz-kpi__value nz-kpi__value--accent">2.223</span>
       </div>
       <div class="nz-kpi nz-kpi--bordered">
-        <span class="nz-kpi__label">Dependencies</span>
+        <span class="nz-kpi__label">Network calls</span>
         <span class="nz-kpi__value">0</span>
       </div>
     </div>
   </section>
 
-  <section id="what" class="nz-container nz-stack" aria-label="What each artifact is">
-    <h2 class="nz-h3">What each one is</h2>
+  <section id="tools" class="nz-container nz-stack" aria-label="The two tools">
+    <h2 class="nz-h3">Two tools, not prompt tricks</h2>
+    <p class="nz-lead">A skill can explain the rules. Only code can guarantee that the class exists and that the packs are linked.</p>
 
     <div class="nz-split">
       <article class="nz-article">
-        <span class="nz-badge">Plugin</span>
-        <h3 class="nz-h5">aurora-design-system</h3>
-        <p class="nz-prose">Four skills that teach the agent to build UI with Aurora: resolve the live version from the repository, compose with documented objects only, and validate the page with the system's own auditor. No tools, no hooks, no network calls of its own.</p>
-        <code class="nz-code nz-code--block">hermes plugins install aurora-design-system</code>
-        <p class="nz-prose"><a class="nz-cta" href="https://github.com/Ntizar/hermes-aurora">Plugin repository<span class="nz-cta__arrow">→</span></a></p>
+        <span class="nz-badge">aurora_buscar</span>
+        <h3 class="nz-h5">Ask the census, get the real markup</h3>
+        <p class="nz-prose">The agent asks in plain words — in Spanish or English — and gets the family, the pack to link, every class and the canonical markup extracted from the catalogue demo. 2.223 objects, in-process.</p>
+        <code class="nz-code nz-code--block">aurora_buscar("table that stacks on mobile")</code>
+        <p class="nz-prose">Instead of guessing <code class="nz-code">nz-card</code> (which does not exist), it receives <code class="nz-code">nz-table--apilable</code> with its wrapper and its <code class="nz-code">data-etiqueta</code>.</p>
       </article>
 
       <article class="nz-article">
-        <span class="nz-badge">Skill</span>
-        <h3 class="nz-h5">acceptance-criteria</h3>
-        <p class="nz-prose">Write 3–7 falsifiable criteria before starting, each with the command that checks it. When the work ends, <code class="nz-code">check</code> runs them and <code class="nz-code">close</code> refuses while anything is red. «Done» becomes evidence.</p>
-        <code class="nz-code nz-code--block">hermes skills install https://raw.githubusercontent.com/Ntizar/hermes-skill-acceptance-criteria/main/SKILL.md</code>
-        <p class="nz-prose"><a class="nz-cta" href="https://github.com/Ntizar/hermes-skill-acceptance-criteria">Skill repository<span class="nz-cta__arrow">→</span></a></p>
+        <span class="nz-badge">aurora_validar</span>
+        <h3 class="nz-h5">Prove the page before saying done</h3>
+        <p class="nz-prose">Invented classes, packs used but not linked, gradients, <code class="nz-code">!important</code>, hand-written colours, emojis in the UI, duplicate headings, missing attribution. Failures and warnings, offline, in milliseconds.</p>
+        <code class="nz-code nz-code--block">aurora_validar(ruta="page.html")</code>
+        <p class="nz-prose">The agent iterates until <code class="nz-code">ok: true</code>. The check is reproducible by anyone, on any machine, without a clone of the design system.</p>
       </article>
+    </div>
+
+    <div class="nz-callout nz-callout--note">
+      <p><strong>Safe by construction:</strong> no network, no subprocess, no writes, no hooks. The census is a generated JSON snapshot (<code class="nz-code">data/censo.json</code>) built from <code class="nz-code">components.json</code> by <code class="nz-code">scripts/generar-censo.py</code>.</p>
     </div>
   </section>
 
@@ -125,12 +130,12 @@
       <article class="nz-article">
         <h3 class="nz-h5">Plugin</h3>
         <code class="nz-code nz-code--block">hermes plugins install aurora-design-system --enable</code>
-        <p class="nz-prose">Requires Hermes Agent 0.21 or newer. Verify with <code class="nz-code">hermes plugins validate</code> and <code class="nz-code">hermes plugins doctor</code>.</p>
+        <p class="nz-prose">Hermes Agent 0.21 or newer. Verify with <code class="nz-code">hermes plugins validate</code> and <code class="nz-code">hermes plugins doctor</code>: two tools, four skills, zero network.</p>
       </article>
       <article class="nz-article">
-        <h3 class="nz-h5">Skill</h3>
-        <code class="nz-code nz-code--block">hermes skills install https://raw.githubusercontent.com/Ntizar/hermes-skill-acceptance-criteria/main/SKILL.md</code>
-        <p class="nz-prose">Then, before a non-trivial task: <code class="nz-code">harness.py new ... --criterion "text :: command"</code>.</p>
+        <h3 class="nz-h5">Also from this author</h3>
+        <p class="nz-prose"><strong>acceptance-criteria</strong> — a skill that fixes 3–7 falsifiable criteria before a task and refuses to close while anything is red. A separate repository, because it is a different idea: one is a design system, the other is a working discipline.</p>
+        <p class="nz-prose"><a class="nz-cta" href="https://github.com/Ntizar/hermes-skill-acceptance-criteria">Skill repository<span class="nz-cta__arrow">→</span></a></p>
       </article>
     </div>
   </section>

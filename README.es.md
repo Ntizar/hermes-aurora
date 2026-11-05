@@ -22,6 +22,19 @@ hermes plugins install Ntizar/hermes-aurora --enable
 
 Sin claves, sin configuración y sin dependencias.
 
+## Las dos herramientas (lo que una skill no puede hacer)
+
+| Herramienta | Qué hace |
+|---|---|
+| `aurora_buscar` | Pregunta en lenguaje natural («tabla que se apila en móvil») → familia, pack que hay que enlazar, todas las clases y el **markup real** del catálogo. 2.223 objetos, en proceso. |
+| `aurora_validar` | Valida una página contra el censo de clases: inventadas, packs usados pero no enlazados, gradientes, `!important`, colores a mano, emoji en la interfaz, `<h1>` duplicado, pie de atribución ausente. Devuelve `ok`, `fallos`, `avisos`. |
+
+Las dos son offline: leen `data/censo.json`, una foto generada del `components.json` del sistema
+(`scripts/generar-censo.py`). Sin red, sin subprocess, sin escrituras, sin hooks: el plugin solo
+responde.
+
+Vídeo de demo (57 s, inglés, subtítulos quemados): [`video/demo.mp4`](video/demo.mp4)
+
 ## Qué trae
 
 | Skill | Cuándo se usa |

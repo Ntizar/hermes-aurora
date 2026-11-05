@@ -4,3 +4,6 @@ __pycache__/
 node_modules/
 .DS_Store
 *.bak
+video/frames/seg*.mp4
+video/frames/concat.txt
+video/demo-sin-subtitulos.mp4
