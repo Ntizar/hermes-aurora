@@ -1,0 +1,17 @@
+name: aurora-design-system
+repo: https://github.com/Ntizar/hermes-aurora
+sha: 651a45f3dad62d33a1d00f270c256c1595e4d1a5
+title: Aurora Design System
+description: 'Four skills that teach Hermes to build production web UI with the Aurora CSS design system: resolve the live version from the repo instead of trusting memory, compose with documented objects only, and validate the page with the system auditor before calling it done. Skills only - no tools, hooks, middleware, environment variables or network calls of its own.'
+maintainer: Ntizar
+tier: community
+category: general
+version: "1.0.0"
+docs_url: https://github.com/Ntizar/hermes-aurora
+image: https://raw.githubusercontent.com/Ntizar/hermes-aurora/651a45f3dad62d33a1d00f270c256c1595e4d1a5/docs/screenshots/landing.png
+platforms: []
+capabilities:
+  provides_tools: []
+  provides_hooks: []
+  provides_middleware: []
+  requires_env: []
