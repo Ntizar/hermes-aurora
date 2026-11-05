@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Two artifacts for Hermes Agent · Aurora + acceptance criteria</title>
-<meta name="description" content="A skills plugin that teaches a Hermes agent to build UI with the Aurora design system, and a skill that turns done into a checkable receipt.">
+<title>Aurora for Hermes — a design system the agent cannot fake</title>
+<meta name="description" content="Aurora Design System plugin for Hermes Agent: two offline tools (census lookup + page validator) and four skills. Official plugin catalog entry, Hermes Agent Plugin Hackathon 2026.">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10/tokens.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10/marcas/monocromo.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10/packs/p1-layout.css">
@@ -33,13 +33,14 @@
 
   <section class="nz-hero-bleed">
     <div class="nz-container nz-stack">
-      <span class="nz-eyebrow">Hermes plugin hackathon · November 2026</span>
+      <span class="nz-eyebrow">Hermes Agent Plugin Hackathon · November 2026</span>
       <h1 class="nz-display">Stop the agent from improvising</h1>
       <p class="nz-lead nz-lead--lg">A design system the agent cannot fake. Two offline tools read the census before writing a class, and prove the page before calling it done. Four skills explain the rest.</p>
       <div class="nz-cluster">
         <a class="nz-btn nz-btn--primary nz-btn--lg" href="#install">Install the plugin</a>
-        <a class="nz-cta" href="#tools">See the tools<span class="nz-cta__arrow">→</span></a>
+        <a class="nz-cta" href="#demo">Watch the 57 s demo<span class="nz-cta__arrow">→</span></a>
       </div>
+      <p class="nz-prose"><span class="nz-badge">✓ Merged</span> Official Hermes plugin catalog, Nov 5 2026 — <a href="https://github.com/NousResearch/hermes-agent/pull/149421">PR #149421</a></p>
     </div>
   </section>
 
@@ -51,7 +52,7 @@
       </div>
       <div class="nz-kpi nz-kpi--bordered">
         <span class="nz-kpi__label">Objects in the census</span>
-        <span class="nz-kpi__value nz-kpi__value--accent">2.223</span>
+        <span class="nz-kpi__value nz-kpi__value--accent">2,223</span>
       </div>
       <div class="nz-kpi nz-kpi--bordered">
         <span class="nz-kpi__label">Network calls</span>
@@ -68,7 +69,7 @@
       <article class="nz-article">
         <span class="nz-badge">aurora_search</span>
         <h3 class="nz-h5">Ask the census, get the real markup</h3>
-        <p class="nz-prose">The agent asks in plain words — in Spanish or English — and gets the family, the pack to link, every class and the canonical markup extracted from the catalogue demo. 2.223 objects, in-process.</p>
+        <p class="nz-prose">The agent asks in plain words — in Spanish or English — and gets the family, the pack to link, every class and the canonical markup extracted from the catalogue demo. 2,223 objects, in-process.</p>
         <code class="nz-code nz-code--block">aurora_search("table that stacks on mobile")</code>
         <p class="nz-prose">Instead of guessing <code class="nz-code">nz-card</code> (which does not exist), it receives <code class="nz-code">nz-table--apilable</code> with its wrapper and its <code class="nz-code">data-etiqueta</code>.</p>
       </article>
@@ -122,6 +123,20 @@
     <div class="nz-callout nz-callout--note">
       <p><strong>This page is the proof.</strong> It is built with Aurora from the same census the skills describe, and it passes the same auditor with zero failures and zero warnings.</p>
     </div>
+  </section>
+
+  <section id="demo" class="nz-container nz-stack" aria-label="Demo video">
+    <h2 class="nz-h3">The 57-second demo</h2>
+    <p class="nz-lead">Watch a Hermes agent stop guessing: it searches the census, builds the page and validates it until the report is clean.</p>
+    <figure class="nz-figure">
+      <video class="nz-img nz-img--bordered nz-img--rounded" controls preload="metadata"
+             poster="screenshots/landing.png" width="1600" height="900">
+        <source src="video/demo.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <figcaption>English, subtitles burned in. Also on
+        <a href="https://github.com/Ntizar/hermes-aurora/raw/main/video/demo.mp4">GitHub</a>.</figcaption>
+    </figure>
   </section>
 
   <section id="install" class="nz-container nz-stack" aria-label="Install">
