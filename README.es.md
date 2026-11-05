@@ -38,7 +38,7 @@ Casi todos los plugins de «design system» traen un tema. Este trae **un proced
 1. **Manda el repo, no el prompt.** El paso 0 resuelve siempre el tag vigente (`git describe --tags --abbrev=0` o la API de GitHub) y lee `LLM.md` y `components.json` generados. Una versión escrita de memoria está mal en cuanto sale una release.
 2. **Leer ~20 KB, no ~340 KB.** El agente consulta el censo (`components.json`) para la familia que necesita y copia el markup real, en vez de pegar packs de CSS en el contexto.
 3. **No inventar.** Si una clase no está en el censo, no existe. La skill lista las trampas que de verdad cuestan tiempo: `.nz-card`, `nz-text--xs`, un `.nz-switch` sin track/thumb (deja el input inerte), `min-height` en un contenedor cuyo hijo usa `height:100%`.
-4. **Medir, no admirar.** La página se entrega cuando el auditor del repo da cero hallazgos *y* el navegador lo confirma: `scrollWidth === clientWidth` a 320/360/390, `display:flex` computado en la navbar, la acción principal por encima del pliegue.
+4. **Medir, no admirar.** La página se entrega cuando el auditor del repo da `0 fallos` *y* el navegador lo confirma: `scrollWidth === clientWidth` a 320/360/390, `display:flex` computado en la navbar, la acción principal por encima del pliegue.
 
 ## Por qué es seguro
 

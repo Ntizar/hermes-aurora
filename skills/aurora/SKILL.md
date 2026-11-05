@@ -133,8 +133,8 @@ Modifier lexicon (same in all 18 packs): size `--2xs/--xs/--sm/--lg/--xl`; tone
    `bloques/combos/` (skeletons per archetype). Delete what you don't use.
 3. **Write the HTML** with census objects only. If something is missing, it does not exist:
    either use another object or add it to the repo — never invent a class or write local CSS.
-4. **Validate** with the sibling skill `aurora-validate` (auditor + measurement). Zero failures
-   or it is not done.
+4. **Validate** with the sibling skill `aurora-validate` (auditor + measurement). `0 fallos` in
+   the auditor and a measured mobile check, or it is not done.
 5. **Deliver** with the exact footer.
 
 If you are generating many pages of the same shape, write a block renderer (one function per

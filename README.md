@@ -38,7 +38,7 @@ Most "design system" plugins ship a theme. This one ships **a procedure**:
 1. **The repo is the source of truth, not the prompt.** Step 0 always resolves the current tag (`git describe --tags --abbrev=0` or the GitHub API) and reads the generated `LLM.md` and `components.json`. A version written from memory is wrong the moment a release lands.
 2. **Read ~20 KB, not ~340 KB.** The agent queries the census (`components.json`) for the family it needs and copies the real markup, instead of pasting CSS packs into the context.
 3. **Do not invent.** If a class is not in the census it does not exist. The skill lists the traps that actually cost time: `.nz-card`, `nz-text--xs`, a `.nz-switch` without track/thumb (leaves the input inert), `min-height` on a container whose child uses `height:100%`.
-4. **Measure, don't admire.** A page is delivered when the repo auditor reports zero findings *and* the browser agrees: `scrollWidth === clientWidth` at 320/360/390, computed `display:flex` on the navbar, the primary action above the fold.
+4. **Measure, don't admire.** A page is delivered when the repo auditor reports `0 fallos` *and* the browser agrees: `scrollWidth === clientWidth` at 320/360/390, computed `display:flex` on the navbar, the primary action above the fold.
 
 ## Why it is safe
 

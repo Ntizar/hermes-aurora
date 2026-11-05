@@ -21,7 +21,16 @@ python3 scripts/auditar-uso.py mi-pagina.html
 
 It checks: invented classes, packs that are needed but not linked, gradients,
 `backdrop-filter`, `!important`, hand-written colours, desktop-first CSS, duplicate `<h1>`,
-emojis in UI, and the attribution footer. **Zero findings, or it is not finished.**
+emojis in UI, and the attribution footer. Read the last line:
+
+```
+→ 0 fallos · 2 avisos
+```
+
+**Zero `fallos` is the bar.** `avisos` do not block, but each one is a question you answer in
+your head: a saturated-colour budget overrun, a brand moment with no accent. The canonical
+examples ship with one or two warnings, so seeing a warning is not automatically a bug — seeing
+a failure always is.
 
 It is also the reference implementation: if you build your own checker (another language, a
 generated page), pass the *same* file through both and compare verdicts. Then sabotage a copy
