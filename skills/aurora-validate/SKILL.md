@@ -11,6 +11,21 @@ tags: [design-system, css, qa, audit, aurora]
 The lint catches vocabulary and rules. The browser catches what the lint cannot see. A page is
 done when **both** are green — never when it "looks fine".
 
+## 0. First, the tool that ships with the plugin
+
+```
+aurora_validar(ruta="page.html")     # or html="<html>…"
+```
+
+It answers offline, in milliseconds, straight from the bundled census: invented classes,
+packs used but not linked, gradients, `backdrop-filter`, `!important`, hand-written colours,
+emojis in UI, duplicate `<h1>`, missing attribution. You get `ok`, `fallos` (must fix) and
+`avisos` (read them). It is a subset of the repository auditor — narrower, but it runs
+anywhere, including machines without a clone of the design system.
+
+Loop until `ok: true`, then continue below for the checks a linter cannot do. The repository
+auditor stays the final judge when the clone is available.
+
 ## 1. The judge: `auditar-uso.py`
 
 With a clone of the repo (`~/Projects/Aurora` or wherever it lives):
