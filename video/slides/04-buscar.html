@@ -1,75 +1,99 @@
 <!DOCTYPE html>
-<html lang="en" data-nz-theme="light" data-nz-marca="aurora">
-<head>
-<meta charset="utf-8">
-<title>04-buscar</title>
-<link rel="stylesheet" href="aurora-css/tokens.css">
-<link rel="stylesheet" href="aurora-css/marcas/aurora.css">
-<link rel="stylesheet" href="aurora-css/packs/p1-layout.css">
-<link rel="stylesheet" href="aurora-css/packs/p3-typography.css">
-<link rel="stylesheet" href="aurora-css/packs/p4-actions.css">
-<link rel="stylesheet" href="aurora-css/packs/p6-feedback.css">
-<link rel="stylesheet" href="aurora-css/packs/p8-data.css">
+<html lang="en" data-nz-marca="aurora"><head><meta charset="utf-8"><title>04-buscar</title>
 <style>
-  html, body { height: 100%; }
-  body { display: grid; place-items: center; overflow: hidden; margin: 0; }
-  /* body.nz (0,1,1) y posterior: gana a la regla `.nz, body { background: --nz-gray-0 }`
-     de tokens.css — si no, el tinte de marca del slide no se aplica nunca */
-  body.nz { background: #f3f7ff; }
-  .slide { width: 1600px; height: 900px; padding: 80px 110px 140px; box-sizing: border-box;
-            display: flex; flex-direction: column; justify-content: center; gap: 40px; position: relative; }
-  .beat { font-size: 96px; font-weight: 800; letter-spacing: -0.03em; line-height: 1.04;
-           color: var(--nz-text, #fff); max-width: 1300px; margin: 0; }
-  .beat .dim { color: var(--nz-text-mute); }
-  .beat .mk { color: var(--nz-marca-500); }
-  .beat .ac { color: var(--nz-acento-500); }
-  .sub { font-size: 40px; font-weight: 500; color: var(--nz-text-soft); margin: 0; }
-  .eyebrow { color: var(--nz-marca-500); font-size: 21px; letter-spacing: .22em; text-transform: uppercase; font-weight: 600; }
-  .foot { position: absolute; bottom: 52px; left: 110px; right: 110px; display: flex;
-           justify-content: space-between; color: var(--nz-text-mute); font-size: 21px; }
-  .term { border-radius: 14px; overflow: hidden; border: 1px solid var(--nz-border, rgba(128,128,128,.35));
-           box-shadow: 0 24px 80px rgba(0,0,0,.35); max-width: 1200px; }
-  .term__bar { display: flex; align-items: center; gap: 8px; padding: 12px 16px; background: #161d2e; }
-  .term__bar i { width: 12px; height: 12px; border-radius: 50%; background: var(--nz-marca-400); }
-  .term__bar i:nth-child(2) { background: var(--nz-acento-400); }
-  .term__bar i:nth-child(3) { background: #3a4560; }
-  .term__bar span { margin-left: 8px; color: #8a96b5; font-size: 15px; font-family: ui-monospace, Menlo, monospace; }
-  .term__body { padding: 40px 46px; background: #0c111e; color: #e8ecf5;
-                 font-size: 26px; line-height: 1.6; font-family: ui-monospace, Menlo, monospace; }
-  .term__body pre { margin: 0; font-family: inherit; }
-  .prompt { color: var(--nz-acento-400); font-weight: 700; }
-  .cursor { display: inline-block; width: 14px; height: 1.05em; background: var(--nz-acento-400); vertical-align: text-bottom; }
-  .k { color: #9db8ff; } .s { color: #bfe3c0; }
-  .bad { color: #ff9d87; } .ok7 { color: #8fe3a6; }
-  .trio { display: flex; gap: 26px; }
-  .trio .shot-wrap { flex: 1; }
-  .shot-wrap { border-radius: 16px; overflow: hidden; position: relative;
-                 border: 2px solid var(--nz-marca-400); box-shadow: 0 30px 90px rgba(0,0,0,.35); }
-  .shot { width: 100%; height: 500px; object-fit: cover; object-position: top left; display: block; }
-  .trio .shot { height: 440px; }
-  .half { display: flex; gap: 28px; align-items: stretch; }
-  .half .shot-wrap { flex: 1; }
-  .half .shot { height: 480px; }
-  .lbl-bajo { position: absolute; top: 10px; left: 14px; font-size: 16px; letter-spacing: .12em;
-               text-transform: uppercase; font-weight: 700; color: #fff; background: var(--nz-marca-600);
-               padding: 4px 12px; border-radius: 999px; z-index: 3; }
-</style>
+  @font-face { font-family:"Inter var"; font-weight:400 700; font-display:block;
+    src:url("aurora-css/fuentes/inter-var-latin.woff2") format("woff2-variations"); }
+  html, body { height: 100%; margin: 0; overflow: hidden; }
+  body { background: #04050c; }
+  .marco { position: relative; width: 1600px; height: 900px; overflow: hidden; }
+  .cielo { position: absolute; inset: 0; }
+  .clon { position: absolute; width: 1600px; height: 900px; }
+  .reticula { position: absolute; inset: 0; background:
+      repeating-linear-gradient(0deg, rgba(255,255,255,.05) 0 1px, transparent 1px 160px),
+      repeating-linear-gradient(90deg, rgba(255,255,255,.05) 0 1px, transparent 1px 160px); }
+  .luz { position: absolute; inset: 0; background: radial-gradient(60% 50% at 50% 42%,
+      rgba(255,255,255,.10), transparent 70%); }
+  .vineta { position: absolute; inset: 0; background: radial-gradient(120% 100% at 50% 50%,
+      transparent 58%, rgba(0,0,0,.5) 100%); }
+  .portal { position: absolute; border-radius: 34px; overflow: hidden;
+      border: 1px solid rgba(255,255,255,.22);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.80), inset 0 -1px 0 rgba(255,255,255,.14),
+                  inset 0 0 44px rgba(255,255,255,.05), 0 40px 90px -26px rgba(0,0,0,.95); }
+  .portal.ref { -webkit-box-reflect: below 14px linear-gradient(transparent 62%, rgba(255,255,255,.12)); }
+  .vidrio { position: absolute; inset: 0; filter: url(#lg); }
+  .tinte { position: absolute; inset: 0; background: linear-gradient(150deg,
+      rgba(255,255,255,.16), rgba(255,255,255,.045) 48%, rgba(255,255,255,.12)); pointer-events: none; }
+  .grano { position: absolute; inset: 0; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='0.5'/%3E%3C/svg%3E"); opacity: .05;
+      mix-blend-mode: overlay; pointer-events: none; }
+  .chip { position: absolute; inset: 18px; border-radius: 24px; background: rgba(7,10,20,.72);
+      border: 1px solid rgba(255,255,255,.10); }
+  .txt { position: absolute; font-family: "Inter var", -apple-system, Arial, sans-serif; }
+  .beat { font-weight: 800; letter-spacing: -0.03em; line-height: 1.04; color: #fff; margin: 0; }
+  .dim { color: rgba(255,255,255,.42); }
+  .mono { font-family: ui-monospace, Menlo, monospace; }
+  .lbl { letter-spacing: .22em; text-transform: uppercase; font-weight: 600; font-size: 21px; }
+  .fantasma { filter: url(#lg2); }
+</style><svg width="0" height="0" style="position:absolute"><defs>
+  <filter id="lg" x="-14%" y="-14%" width="128%" height="128%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.007 0.011" numOctaves="1" seed="7" result="n"/>
+    <feGaussianBlur in="SourceGraphic" stdDeviation="1.2" result="b"/>
+    <feDisplacementMap in="b" in2="n" scale="24" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+  <filter id="lg2" x="-14%" y="-14%" width="128%" height="128%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.006 0.009" numOctaves="1" seed="11" result="n"/>
+    <feGaussianBlur in="SourceGraphic" stdDeviation="1.6" result="b"/>
+    <feDisplacementMap in="b" in2="n" scale="38" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+</defs></svg>
 </head>
-<body class="nz">
-
-<div class="slide">
-  <span class="eyebrow" data-d="0.1">tool 1 · aurora_search</span>
-  <div class="term" data-d="0.35">
-    <div class="term__bar"><i></i><i></i><i></i><span>census — 2,223 objects</span></div>
-    <div class="term__body"><pre><code><span class="prompt">›</span> <span data-tipea="aurora_search(&quot;table that stacks on mobile&quot;)" data-d="0.9" data-v="38">aurora_search("table that stacks on mobile")</span><span class="cursor"></span>
-<span data-d="3.3">{
-  <span class="k">"family"</span>:  <span class="s">"nz-table"</span>,
-  <span class="k">"pack"</span>:    <span class="s">"packs/p8-data.css"</span>,
-  <span class="k">"classes"</span>: [<span class="s">"nz-table"</span>, <span class="s">"nz-table--apilable"</span>, …],
-  <span class="k">"markup"</span>:  <span class="s">"&lt;div class=\"nz-table-wrap\"&gt;…"</span>
-}</span></code></pre></div>
-  </div>
-  <p class="sub" data-d="6.3" style="font-size:34px; font-weight:700; color:var(--nz-marca-600)">Real objects. Real markup. Every class.</p>
-</div>
-</body>
-</html>
+<body><div class="marco">
+<canvas class='cielo' width='1600' height='900'></canvas><div class='reticula'></div><div class='luz'></div><div class="vineta"></div>
+<div class="txt lbl" data-d="0.1" style="left:110px; top:96px; z-index:6; color:#6b9dff">tool 1 · aurora_search</div><div class="portal" style="left:250px; top:150px; width:1100px; height:560px; "><div class="vidrio"><div class="clon" style="transform:translate(-250px,-150px)"><canvas class='cielo' width='1600' height='900'></canvas><div class='reticula'></div><div class='luz'></div></div></div><div class="tinte"></div><div class="grano"></div>
+<div class="chip"></div>
+<div class="txt mono" style="left:64px; top:64px; z-index:4; font-size:25px; color:#e8ecf5; line-height:1.55">
+  <span style="color:#ff8c4e; font-weight:700">›</span> <span data-tipea="aurora_search(&quot;table that stacks on mobile&quot;)" data-d="0.9">aurora_search("table that stacks on mobile")</span><span style="display:inline-block;width:13px;height:1em;background:#ff8c4e;vertical-align:text-bottom"></span>
+  <div class="fantasma" data-d="2.8" data-out="4.5,1.2" style="position:absolute; left:0; top:64px; width:98%; z-index:6"><div style="margin-top:20px">
+  {<br>
+  &nbsp;&nbsp;<span style="color:#9db8ff">"family"</span>:&nbsp; <span style="color:#bfe3c0">"nz-table"</span>,<br>
+  &nbsp;&nbsp;<span style="color:#9db8ff">"pack"</span>:&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:#bfe3c0">"packs/p8-data.css"</span>,<br>
+  &nbsp;&nbsp;<span style="color:#9db8ff">"classes"</span>: [<span style="color:#bfe3c0">"nz-table"</span>, <span style="color:#bfe3c0">"nz-table--apilable"</span>, …],<br>
+  &nbsp;&nbsp;<span style="color:#9db8ff">"markup"</span>:&nbsp; <span style="color:#bfe3c0">"&lt;div class=\"nz-table-wrap\"&gt;…"</span><br>}</div></div>
+  <div data-d="3.4" style="position:relative; z-index:4"><div style="margin-top:20px">
+  {<br>
+  &nbsp;&nbsp;<span style="color:#9db8ff">"family"</span>:&nbsp; <span style="color:#bfe3c0">"nz-table"</span>,<br>
+  &nbsp;&nbsp;<span style="color:#9db8ff">"pack"</span>:&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:#bfe3c0">"packs/p8-data.css"</span>,<br>
+  &nbsp;&nbsp;<span style="color:#9db8ff">"classes"</span>: [<span style="color:#bfe3c0">"nz-table"</span>, <span style="color:#bfe3c0">"nz-table--apilable"</span>, …],<br>
+  &nbsp;&nbsp;<span style="color:#9db8ff">"markup"</span>:&nbsp; <span style="color:#bfe3c0">"&lt;div class=\"nz-table-wrap\"&gt;…"</span><br>}</div></div>
+</div></div><p class="txt" data-d="6.6" style="top:742px; width:100%; text-align:center; font-size:32px; font-weight:700; color:#a0c0ff; z-index:6; margin:0">Real objects. Real markup. Every class.</p>
+</div><script>
+// Cortinas de aurora en TODOS los canvas .cielo (fondo + clones de los vidrios):
+// posición = función cerrada de t (determinista). Cada clon pinta lo MISMO: la lente
+// refringe el cielo vivo, no un negro.
+const COLES = ["#2563eb", "#f97316", "#417eff"];
+function mulberry(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+const rnd = mulberry(29);
+const C = [];
+for (let i = 0; i < 9; i++) {
+  C.push({ x: 90 + rnd()*1420, a: 0.12 + rnd()*0.18, f: 0.20 + rnd()*0.35,
+           ph: rnd()*6.283, am: 30 + rnd()*70, col: COLES[i % COLES.length], w: 70 + rnd()*140 });
+}
+function cielo(g, t) {
+  g.fillStyle = '#04050c'; g.fillRect(0, 0, 1600, 900);
+  for (const c of C) {
+    const x = c.x + Math.sin(t * c.f + c.ph) * c.am;
+    const grad = g.createLinearGradient(0, 0, 0, 900);
+    grad.addColorStop(0, 'rgba(0,0,0,0)');
+    grad.addColorStop(0.45, c.col);
+    grad.addColorStop(1, 'rgba(0,0,0,0)');
+    g.globalAlpha = c.a * (0.75 + 0.25 * Math.sin(t * 0.5 + c.ph));
+    g.strokeStyle = grad; g.lineWidth = c.w; g.lineCap = 'round';
+    g.beginPath(); g.moveTo(x, -30);
+    g.bezierCurveTo(x + 120 * Math.sin(t * 0.3 + c.ph), 300,
+                    x - 120 * Math.cos(t * 0.22 + c.ph), 600, x + 60, 930);
+    g.stroke();
+  }
+  g.globalAlpha = 1;
+}
+const t0 = (typeof window.__t === 'number') ? window.__t : 2.0;
+document.querySelectorAll('canvas.cielo').forEach(cv => cielo(cv.getContext('2d'), t0));
+</script></body></html>

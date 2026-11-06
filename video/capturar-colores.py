@@ -53,9 +53,9 @@ for fuente, destino, marca, tema, w, h in PEDIDOS:
 from PIL import Image
 lp = OUT / "login.png"
 im = Image.open(lp)
-rec = Image.new("RGB", (im.width, 70 + 520), "white")
+rec = Image.new("RGB", (im.width, 70 + 575), "white")
 rec.paste(im.crop((0, 0, im.width, 70)), (0, 0))
-rec.paste(im.crop((0, 430, im.width, 950)), (0, 70))
+rec.paste(im.crop((0, 415, im.width, 990)), (0, 70))
 rec.save(lp)
 print("login recortado:", rec.size)
 print("listo")

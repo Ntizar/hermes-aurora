@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><style>
+  body { margin: 0; }
+  .rayas { position:absolute; inset:0;
+    background: repeating-linear-gradient(90deg,#0057ff 0 100px,#ff6a00 100px 200px,#00875e 200px 300px,#7c3aed 300px 400px); }
+  .portal { position:absolute; left:400px; top:200px; width:800px; height:500px; overflow:hidden; }
+  .vidrio { position:absolute; inset:0; filter:url(#lg); }
+  .vidrio .clon { position:absolute; width:1600px; height:900px; transform:translate(-400px,-200px); }
+  .solo-blur { position:absolute; left:1250px; top:200px; width:300px; height:500px;
+    background:transparent; border-radius:30px; }
+  .solo-blur .copia { position:absolute; inset:0; border-radius:30px; filter:blur(1.2px);
+    background: repeating-linear-gradient(90deg,#0057ff 0 100px,#ff6a00 100px 200px); }
+</style></head><body>
+<svg width="0" height="0" style="position:absolute"><defs>
+  <filter id="lg" x="-14%" y="-14%" width="128%" height="128%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.007 0.011" numOctaves="1" seed="7" result="n"/>
+    <feGaussianBlur in="SourceGraphic" stdDeviation="1.2" result="b"/>
+    <feDisplacementMap in="b" in2="n" scale="24" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+</defs></svg>
+<div class="rayas"></div>
+<div class="portal"><div class="vidrio"><div class="clon"><div class="rayas" style="position:absolute;inset:0"></div></div></div></div>
+<div class="solo-blur"><div class="copia"></div></div>
+</body></html>

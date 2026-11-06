@@ -1,99 +1,88 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<title>three-intro</title>
+<html lang="en" data-nz-marca="ntizar"><head><meta charset="utf-8"><title>00-three</title>
 <style>
-  html, body { height: 100%; background: #05060a; margin: 0; overflow: hidden; }
-  canvas { display: block; position: absolute; inset: 0; z-index: 1; }
-  .claim { position: absolute; inset: 0; z-index: 2; display: grid; place-items: center;
-           font-family: "Inter var", -apple-system, "Helvetica Neue", Arial, sans-serif; pointer-events: none; }
-  .claim h1 { font-size: 150px; font-weight: 800; letter-spacing: -0.02em; color: #fff;
-              margin: 0; white-space: nowrap; will-change: opacity, filter; }
-  /* Cada letra, una marca Aurora (los 500 oficiales de las rampas) */
-  .claim h1 span { display: inline-block; }
-  .c1 { color: #3a7aff; } .c2 { color: #6261ff; } .c3 { color: #417eff; }
-  .c4 { color: #2f9e74; } .c5 { color: #ff8c4e; } .c6 { color: #a78bfa; }
-  .claim .sub { position: absolute; top: 66%; width: 100%; text-align: center;
-                font-size: 28px; letter-spacing: .5em; text-transform: uppercase; color: #9aa4b8; }
-</style>
+  @font-face { font-family:"Inter var"; font-weight:400 700; font-display:block;
+    src:url("aurora-css/fuentes/inter-var-latin.woff2") format("woff2-variations"); }
+  html, body { height: 100%; margin: 0; overflow: hidden; }
+  body { background: #04050c; }
+  .marco { position: relative; width: 1600px; height: 900px; overflow: hidden; }
+  .cielo { position: absolute; inset: 0; }
+  .clon { position: absolute; width: 1600px; height: 900px; }
+  .reticula { position: absolute; inset: 0; background:
+      repeating-linear-gradient(0deg, rgba(255,255,255,.05) 0 1px, transparent 1px 160px),
+      repeating-linear-gradient(90deg, rgba(255,255,255,.05) 0 1px, transparent 1px 160px); }
+  .luz { position: absolute; inset: 0; background: radial-gradient(60% 50% at 50% 42%,
+      rgba(255,255,255,.10), transparent 70%); }
+  .vineta { position: absolute; inset: 0; background: radial-gradient(120% 100% at 50% 50%,
+      transparent 58%, rgba(0,0,0,.5) 100%); }
+  .portal { position: absolute; border-radius: 34px; overflow: hidden;
+      border: 1px solid rgba(255,255,255,.22);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.80), inset 0 -1px 0 rgba(255,255,255,.14),
+                  inset 0 0 44px rgba(255,255,255,.05), 0 40px 90px -26px rgba(0,0,0,.95); }
+  .portal.ref { -webkit-box-reflect: below 14px linear-gradient(transparent 62%, rgba(255,255,255,.12)); }
+  .vidrio { position: absolute; inset: 0; filter: url(#lg); }
+  .tinte { position: absolute; inset: 0; background: linear-gradient(150deg,
+      rgba(255,255,255,.16), rgba(255,255,255,.045) 48%, rgba(255,255,255,.12)); pointer-events: none; }
+  .grano { position: absolute; inset: 0; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='0.5'/%3E%3C/svg%3E"); opacity: .05;
+      mix-blend-mode: overlay; pointer-events: none; }
+  .chip { position: absolute; inset: 18px; border-radius: 24px; background: rgba(7,10,20,.72);
+      border: 1px solid rgba(255,255,255,.10); }
+  .txt { position: absolute; font-family: "Inter var", -apple-system, Arial, sans-serif; }
+  .beat { font-weight: 800; letter-spacing: -0.03em; line-height: 1.04; color: #fff; margin: 0; }
+  .dim { color: rgba(255,255,255,.42); }
+  .mono { font-family: ui-monospace, Menlo, monospace; }
+  .lbl { letter-spacing: .22em; text-transform: uppercase; font-weight: 600; font-size: 21px; }
+  .fantasma { filter: url(#lg2); }
+</style><svg width="0" height="0" style="position:absolute"><defs>
+  <filter id="lg" x="-14%" y="-14%" width="128%" height="128%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.007 0.011" numOctaves="1" seed="7" result="n"/>
+    <feGaussianBlur in="SourceGraphic" stdDeviation="1.2" result="b"/>
+    <feDisplacementMap in="b" in2="n" scale="24" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+  <filter id="lg2" x="-14%" y="-14%" width="128%" height="128%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.006 0.009" numOctaves="1" seed="11" result="n"/>
+    <feGaussianBlur in="SourceGraphic" stdDeviation="1.6" result="b"/>
+    <feDisplacementMap in="b" in2="n" scale="38" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+</defs></svg>
 </head>
-<body>
-<canvas id="lienzo" width="1600" height="900"></canvas>
-<div class="claim">
-  <h1 data-claim="1.6,1.6"><span class="c1">A</span><span class="c2">U</span><span class="c3">R</span><span class="c4">O</span><span class="c5">R</span><span class="c6">A</span></h1>
-  <div class="sub" data-d="3.2">design system · for agents</div>
-</div>
-<script>
-// Campo de partículas de las SEIS MARCAS de Aurora en canvas 2D con profundidad
-// pseudo-3D. Determinismo total (arregla el parpadeo del v5): la posición es una
-// función CERRADA del tiempo — nada de acumulación fotograma a fotograma ni WebGL
-// con swiftshader (que además costaba 1.5 s por fotograma en esta VM).
-function mulberry32(a) {
-  return function() {
-    a |= 0; a = a + 0x6D2B79F5 | 0;
-    let t = Math.imul(a ^ a >>> 15, 1 | a);
-    t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
-    return ((t ^ t >>> 14) >>> 0) / 4294967296;
-  };
+<body><div class="marco">
+<canvas class='cielo' width='1600' height='900'></canvas><div class='reticula'></div><div class='luz'></div><div class="vineta"></div>
+<div class="portal ref" style="left:140px; top:170px; width:1320px; height:520px; z-index:2"><div class="vidrio"><div class="clon" style="transform:translate(-140px,-170px)"><canvas class='cielo' width='1600' height='900'></canvas><div class='reticula'></div><div class='luz'></div></div></div><div class="tinte"></div><div class="grano"></div></div>
+<h1 class="beat" data-claim="0.8,1.5" style="position:absolute; inset:0; display:grid; place-items:center;
+    font-size:170px; z-index:6; margin:0">
+  <span style="white-space:nowrap"><span style="color:#3a7aff">A</span><span style="color:#6261ff">U</span><span style="color:#417eff">R</span><span style="color:#2f9e74">O</span><span style="color:#ff8c4e">R</span><span style="color:#a78bfa">A</span></span></h1>
+<div class="txt lbl" data-d="2.6" style="top:560px; width:100%; text-align:center; color:rgba(255,255,255,.55); z-index:6">design system · through the glass</div>
+
+</div><script>
+// Cortinas de aurora en TODOS los canvas .cielo (fondo + clones de los vidrios):
+// posición = función cerrada de t (determinista). Cada clon pinta lo MISMO: la lente
+// refringe el cielo vivo, no un negro.
+const COLES = ["#0057ff", "#3a7aff", "#ff6a00"];
+function mulberry(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+const rnd = mulberry(7);
+const C = [];
+for (let i = 0; i < 9; i++) {
+  C.push({ x: 90 + rnd()*1420, a: 0.12 + rnd()*0.18, f: 0.20 + rnd()*0.35,
+           ph: rnd()*6.283, am: 30 + rnd()*70, col: COLES[i % COLES.length], w: 70 + rnd()*140 });
 }
-const cv = document.getElementById('lienzo');
-const g = cv.getContext('2d');
-const COLES = ['#3a7aff', '#6261ff', '#417eff', '#2f9e74', '#ff8c4e', '#a78bfa'];
-const N = 3200;
-const P = [];
-const rnd = mulberry32(20261106);
-for (let i = 0; i < N; i++) {
-  P.push({
-    ang: rnd() * Math.PI * 2,
-    r0: 8 + Math.pow(rnd(), 0.55) * 24,     // radio inicial, disperso (en unidades de escena)
-    z: rnd(),                                // profundidad 0..1 (tamaño y brillo)
-    s: rnd() * Math.PI * 2,                  // fase propia
-    col: COLES[Math.floor(rnd() * COLES.length)],
-    br: 0.55 + rnd() * 0.45
-  });
-}
-const CX = 800, CY = 415, ESC = 26;
-function pintar(t) {
-  g.fillStyle = '#05060a'; g.fillRect(0, 0, 1600, 900);
-  const zoom = 1 + Math.min(t * 0.045, 0.15);
-  // convergencia al anillo: forma cerrada, suave cúbico desde t=1.0 hasta 3.4
-  const k = Math.max(Math.min((t - 1.0) / 2.4, 1), 0);
-  const conv = 1 - Math.pow(1 - k, 3);
-  for (const p of P) {
-    const banda = 9.6 + (p.s % 1) * 0.7;                      // radio objetivo de la banda del anillo
-    const r = (p.r0 + (banda - p.r0) * conv) * ESC * zoom;
-    const giro = p.ang + t * (0.10 + p.z * 0.10);
-    const x = CX + Math.cos(giro) * r;
-    const y = CY + Math.sin(giro) * r * 0.36 + Math.sin(t * 0.8 + p.s) * 8 * (1 - conv);
-    const tam = (0.6 + p.z * 2.8) * zoom;
-    const parpadeo = 0.6 + 0.4 * Math.sin(t * 1.6 + p.s * 4);  // centelleo suave determinista
-    g.globalAlpha = Math.max(0.06, Math.min(p.br * parpadeo * (0.35 + 0.65 * p.z), 0.92));
-    g.fillStyle = p.col;
-    g.beginPath(); g.arc(x, y, tam, 0, 6.2832); g.fill();
-    if (p.z > 0.9) {                                           // halo bokeh en las cercanas
-      g.globalAlpha *= 0.18;
-      g.beginPath(); g.arc(x, y, tam * 3.4, 0, 6.2832); g.fill();
-    }
+function cielo(g, t) {
+  g.fillStyle = '#04050c'; g.fillRect(0, 0, 1600, 900);
+  for (const c of C) {
+    const x = c.x + Math.sin(t * c.f + c.ph) * c.am;
+    const grad = g.createLinearGradient(0, 0, 0, 900);
+    grad.addColorStop(0, 'rgba(0,0,0,0)');
+    grad.addColorStop(0.45, c.col);
+    grad.addColorStop(1, 'rgba(0,0,0,0)');
+    g.globalAlpha = c.a * (0.75 + 0.25 * Math.sin(t * 0.5 + c.ph));
+    g.strokeStyle = grad; g.lineWidth = c.w; g.lineCap = 'round';
+    g.beginPath(); g.moveTo(x, -30);
+    g.bezierCurveTo(x + 120 * Math.sin(t * 0.3 + c.ph), 300,
+                    x - 120 * Math.cos(t * 0.22 + c.ph), 600, x + 60, 930);
+    g.stroke();
   }
-  // anillo orbital fino (azul marca aurora) con respiración
-  g.globalAlpha = 0.38 + 0.12 * Math.sin(t * 0.9);
-  g.strokeStyle = '#417eff'; g.lineWidth = 2.5;
-  g.beginPath();
-  g.ellipse(CX, CY, 9.9 * ESC * zoom, 9.9 * ESC * 0.36 * zoom, 0, 0, 6.2832);
-  g.stroke();
   g.globalAlpha = 1;
 }
-window.__pintar = pintar;   // el rasterizador puede fijar t desde fuera
-if (window.__t !== undefined) {
-  pintar(window.__t);       // modo rasterizador (t inyectado por línea de comando JS)
-} else {
-  const t0 = performance.now();
-  (function loop() {
-    pintar((performance.now() - t0) / 1000);
-    requestAnimationFrame(loop);
-  })();
-}
-</script>
-</body>
-</html>
+const t0 = (typeof window.__t === 'number') ? window.__t : 2.0;
+document.querySelectorAll('canvas.cielo').forEach(cv => cielo(cv.getContext('2d'), t0));
+</script></body></html>
