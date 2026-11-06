@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>three-intro</title>
+<style>
+  html, body { height: 100%; background: #000; margin: 0; overflow: hidden; }
+  canvas { display: block; position: absolute; inset: 0; z-index: 1; }
+  .claim { position: absolute; inset: 0; z-index: 2; display: grid; place-items: center;
+           font-family: -apple-system, "Helvetica Neue", Arial, sans-serif; pointer-events: none; }
+  .claim h1 { font-size: 130px; font-weight: 800; letter-spacing: -0.02em; color: #fff;
+              opacity: 0; margin: 0; will-change: opacity, filter;
+              text-shadow: 0 0 60px rgba(240,199,94,.25); }
+  .claim h1 .o { color: #f0c75e; }
+</style>
+</head>
+<body>
+<div class="claim"><h1>AUR<span class="o">O</span>RA</h1></div>
+<script type="module">
+import * as THREE from './three/three.module.js';
+
+const escena = new THREE.Scene();
+const camara = new THREE.PerspectiveCamera(60, 1600/900, 0.1, 100);
+camara.position.z = 26;
+
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+renderer.setSize(1600, 900);
+renderer.setClearColor(0x000000, 0);
+document.body.appendChild(renderer.domElement);
+
+// Sprite circular con glow (gradiente radial dibujado en canvas 2D, sin assets).
+function spriteDorado() {
+  const c = document.createElement('canvas'); c.width = c.height = 64;
+  const g = c.getContext('2d');
+  const grad = g.createRadialGradient(32, 32, 0, 32, 32, 32);
+  grad.addColorStop(0, 'rgba(255,235,180,1)');
+  grad.addColorStop(0.35, 'rgba(240,199,94,0.85)');
+  grad.addColorStop(1, 'rgba(240,199,94,0)');
+  g.fillStyle = grad; g.fillRect(0, 0, 64, 64);
+  const tex = new THREE.CanvasTexture(c);
+  return tex;
+}
+
+const N = 9000;
+const pos = new Float32Array(N * 3);
+const semilla = new Float32Array(N);
+for (let i = 0; i < N; i++) {
+  const angulo = Math.random() * Math.PI * 2;
+  const radio = 4 + Math.pow(Math.random(), 0.6) * 26;
+  pos[i*3]   = Math.cos(angulo) * radio;
+  pos[i*3+1] = Math.sin(angulo) * radio * 0.62;
+  pos[i*3+2] = (Math.random() - 0.5) * 14;
+  semilla[i] = Math.random() * Math.PI * 2;
+}
+const geo = new THREE.BufferGeometry();
+geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+const material = new THREE.PointsMaterial({
+  map: spriteDorado(), color: 0xf0c75e, size: 0.34, transparent: true, opacity: 0.95,
+  blending: THREE.AdditiveBlending, depthWrite: false, sizeAttenuation: true
+});
+const puntos = new THREE.Points(geo, material);
+escena.add(puntos);
+
+const anillo = new THREE.Mesh(
+  new THREE.TorusGeometry(9.5, 0.035, 8, 220),
+  new THREE.MeshBasicMaterial({ color: 0xf0c75e, transparent: true, opacity: 0.5 })
+);
+anillo.rotation.x = Math.PI / 2.15;
+escena.add(anillo);
+
+const reloj = new THREE.Clock();
+const claim = document.querySelector('.claim h1');
+function frame() {
+  const t = reloj.getElapsedTime();
+  // claim: blur+escala+opacidad gobernados por el mismo reloj (determinista bajo tiempo virtual)
+  if (t > 2.0) {
+    const k = Math.min((t - 2.0) / 1.6, 1);
+    const suave = 1 - Math.pow(1 - k, 3);
+    claim.style.opacity = suave;
+    claim.style.filter = 'blur(' + (14 * (1 - suave)) + 'px)';
+    claim.style.transform = 'scale(' + (0.9 + 0.1 * suave) + ')';
+  }
+  const p = geo.attributes.position.array;
+  for (let i = 0; i < N; i++) {
+    const s = semilla[i];
+    const x = p[i*3], y = p[i*3+1];
+    const r = Math.hypot(x, y) || 1;
+    const giro = 0.24 * (1 + 0.5 * Math.sin(t * 0.6 + s));
+    const cos = Math.cos(giro * 0.016), sin = Math.sin(giro * 0.016);
+    p[i*3]   = x * cos - y * sin;
+    p[i*3+1] = x * sin + y * cos;
+    p[i*3+2] += Math.sin(t * 0.8 + s) * 0.012;
+    const objetivo = 9.5 + (s % 1) * 0.6;
+    const k = t > 1.8 ? 0.02 : 0.0;
+    p[i*3]   += (p[i*3]   / r) * (objetivo - r) * k;
+    p[i*3+1] += (p[i*3+1] / r) * (objetivo * 0.62 - p[i*3+1]) * k;
+  }
+  geo.attributes.position.needsUpdate = true;
+  anillo.rotation.z = t * 0.4;
+  puntos.rotation.z = t * 0.05;
+  camara.position.z = 26 - Math.min(t * 0.9, 4);
+  renderer.render(escena, camara);
+  requestAnimationFrame(frame);
+}
+frame();
+</script>
+</body>
+</html>

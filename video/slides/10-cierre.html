@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" data-nz-theme="dark" data-nz-marca="monocromo">
+<head>
+<meta charset="utf-8">
+<title>cierre</title>
+<link rel="stylesheet" href="aurora-css/tokens.css">
+<link rel="stylesheet" href="aurora-css/marcas/monocromo.css">
+<link rel="stylesheet" href="aurora-css/packs/p1-layout.css">
+<link rel="stylesheet" href="aurora-css/packs/p3-typography.css">
+<link rel="stylesheet" href="aurora-css/packs/p4-actions.css">
+<link rel="stylesheet" href="aurora-css/packs/p6-feedback.css">
+<style>
+  html, body { height: 100%; background: #000; }
+  body { display: grid; place-items: center; overflow: hidden; }
+  .slide { width: 1600px; height: 900px; display: flex; flex-direction: column;
+           justify-content: center; align-items: center; gap: 50px; position: relative; }
+  .beat { font-size: 92px; font-weight: 800; letter-spacing: -0.03em; color: #fff; margin: 0;
+          opacity: 0; }
+  .beat .o { color: #f0c75e; }
+  .comand { opacity: 0; font-family: ui-monospace, Menlo, monospace; font-size: 30px;
+            color: #e8ecf5; background: #0a0a0d; border: 1px solid rgba(255,255,255,.12);
+            border-radius: 12px; padding: 26px 40px; }
+  .comand .p { color: #f0c75e; font-weight: 700; }
+  .enlaces { opacity: 0; color: #8a8a8a; font-size: 26px; }
+  .made { position: absolute; bottom: 50px; color: #5c5c5c; font-size: 22px; opacity: 0; }
+</style>
+</head>
+<body>
+<div class="slide">
+  <h1 class="beat">AUR<span class="o">O</span>RA <span style="color:#6f6f6f">for</span> Hermes.</h1>
+  <div class="comand"><span class="p">$</span> hermes plugins install aurora-design-system</div>
+  <p class="enlaces">github.com/Ntizar/hermes-aurora &nbsp;·&nbsp; ntizar.github.io/hermes-aurora</p>
+  <p class="made">Hecho con ❤️ por David Antizar</p>
+</div>
+<script>
+  const reloj0 = performance.now();
+  const secuencia = [
+    ['.beat', 0.5], ['.comand', 1.9], ['.enlaces', 3.4], ['.made', 4.2]
+  ];
+  function paso(ahora) {
+    const t = (ahora - reloj0) / 1000;
+    for (const [sel, d] of secuencia) {
+      const el = document.querySelector(sel);
+      const k = Math.min(Math.max((t - d) / 1.1, 0), 1);
+      el.style.opacity = 1 - Math.pow(1 - k, 3);
+    }
+    requestAnimationFrame(paso);
+  }
+  requestAnimationFrame(paso);
+</script>
+</body>
+</html>
