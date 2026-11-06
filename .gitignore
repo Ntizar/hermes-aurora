@@ -7,3 +7,8 @@ node_modules/
 video/frames/seg*.mp4
 video/frames/concat.txt
 video/demo-sin-subtitulos.mp4
+# v6: fotogramas intermedios y segmentos (112M reproducibles con rasterizar-v7.py + montar-v6.py)
+video/frames6/
+video/segments6/
+video/_frame*.html
+video/slides/_frame*.html

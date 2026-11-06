@@ -39,7 +39,7 @@ writes, no hooks — the plugin only answers.
  "markup": "<div class=\"nz-table-wrap nz-table-wrap--apilable\">…"}
 ```
 
-Demo video (57 s, English, subtitles burned): [`video/demo.mp4`](video/demo.mp4)
+Demo video (69 s, English voiceover, no subtitles): [`video/demo.mp4`](video/demo.mp4)
 
 ## What it ships
 
