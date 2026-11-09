@@ -26,7 +26,7 @@ def main():
     check(abs(dur - 60.0) <= 0.5, f"duración {dur:.2f}s (60 ±0,5)")
     check(v["width"] == 1600 and v["height"] == 900, f"{v['width']}x{v['height']}")
     check(v["codec_name"] == "h264" and v.get("pix_fmt") == "yuv420p", f"{v['codec_name']} {v.get('pix_fmt')}")
-    check(len(aud) == 0, f"{len(aud)} pista(s) de audio (debe ser 0)")
+    check(len(aud) == 1, f"{len(aud)} pista(s) de audio (debe ser 1: solo voz)")
     print("== escenas ==")
     for n in OFFSETS:
         fs = sorted((FRAMES / n).glob("*.png"))
@@ -38,6 +38,21 @@ def main():
         a1 = np.asarray(Image.open(fs[min(len(fs)-1,10)]).convert("L").resize((200,113)), dtype=np.float32)
         mov = float(np.abs(a1-a0).mean())
         check(luma > 25 and mov > 0.4, f"{n}: luma {luma:.0f} · mov {mov:.2f}")
+    print("== audio ==")
+    import re as _re
+    r = subprocess.run(["/home/nan/Projects/subtitulador-brutal/bin/ffmpeg", "-hide_banner", "-i", str(VIDEO),
+                        "-af", "ebur128=peak=true", "-f", "null", "-"], capture_output=True, text=True)
+    I = _re.findall(r"I:\s+(-?[\d.]+) LUFS", r.stderr); P = _re.findall(r"Peak:\s+(-?[\d.]+) dBFS", r.stderr)
+    if I: check(-18 <= float(I[-1]) <= -14, f"sonoridad {I[-1]} LUFS")
+    if P: check(float(P[-1]) < -1.0, f"true peak {P[-1]} dBFS")
+    raw = subprocess.run(["/home/nan/Projects/subtitulador-brutal/bin/ffmpeg", "-v", "error", "-i", str(VIDEO),
+                          "-ac", "1", "-ar", "48000", "-f", "f32le", "-"], capture_output=True).stdout
+    x = np.frombuffer(raw, dtype=np.float32)
+    for a0, a1 in [(4.6, 4.95), (13.0, 13.9), (22.2, 22.9)]:
+        seg = x[int(a0*48000):int(a1*48000)]
+        rms = 20*np.log10(np.sqrt((seg**2).mean())+1e-12)
+        check(rms < -60, f"silencio {a0}-{a1}s: {rms:.0f} dB")
+
     print("== datos reales ==")
     sal = json.loads((RAIZ / "demo-v10" / "salidas.json").read_text())
     html = "".join((RAIZ / "slides11" / f"{n}.html").read_text() for n in OFFSETS)
