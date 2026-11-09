@@ -1,6 +1,6 @@
 # Aurora para Hermes
 
-**Cuatro skills que enseñan a un agente Hermes a construir interfaz web de verdad con [Aurora](https://github.com/Ntizar/Aurora)** — un design system de CSS puro (sin build, sin JavaScript, sin dependencias) con tokens OKLch, temas claro y oscuro, ~2.200 objetos documentados y 338 iconos numerados.
+**Cuatro skills que enseñan a un agente Hermes a construir interfaz web de verdad con [Aurora](https://github.com/Ntizar/Aurora)** — un design system de CSS puro (sin build, sin JavaScript, sin dependencias) con tokens OKLch, temas claro y oscuro, 2.223 clases en 417 familias y 338 iconos numerados.
 
 El agente deja de improvisar CSS: resuelve la versión viva del sistema, decide con tablas en vez de adivinar nombres de clase, y valida la página con el auditor del propio sistema antes de decir «listo».
 
@@ -26,7 +26,7 @@ Sin claves, sin configuración y sin dependencias.
 
 | Herramienta | Qué hace |
 |---|---|
-| `aurora_search` | Pregunta en lenguaje natural («tabla que se apila en móvil») → familia, pack que hay que enlazar, todas las clases y el **markup real** del catálogo. 2.223 objetos, en proceso. |
+| `aurora_search` | Pregunta en lenguaje natural («tabla que se apila en móvil») → familia, pack que hay que enlazar, todas las clases y el **markup real** del catálogo. 2.223 clases, en proceso. |
 | `aurora_validate` | Valida una página contra el censo de clases: inventadas, packs usados pero no enlazados, gradientes, `!important`, colores a mano, emoji en la interfaz, `<h1>` duplicado, pie de atribución ausente. Devuelve `ok`, `fallos`, `avisos`. |
 
 Las dos son offline: leen `data/censo.json`, una foto generada del `components.json` del sistema

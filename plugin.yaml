@@ -1,5 +1,5 @@
 name: aurora-design-system
-version: 1.2.0
+version: 1.3.0
 description: "Aurora design system for Hermes: two offline tools (census lookup with real markup, page validator against the class census) plus four skills that teach the agent to build production web UI with Ntizar/Aurora. No network, no subprocess, no writes."
 author: "David Antizar (Ntizar)"
 license: MIT

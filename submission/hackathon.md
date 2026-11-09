@@ -11,7 +11,7 @@ https://form.typeform.com/to/FwJLvOln
 >
 > For @NousResearch's hackathon I built the fix, not a theme: a census your
 > agent can read, a judge that proves the page (0 failures or it doesn't ship),
-> and skills that teach the procedure. Aurora is the proof — 2,223 objects,
+> and skills that teach the procedure. Aurora is the proof — 2,223 classes,
 > 4 brands, 2 offline tools, 0 network.
 >
 > Anyone can copy the recipe. 70s film 👇 github.com/Ntizar/hermes-aurora

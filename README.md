@@ -1,6 +1,6 @@
 # Aurora for Hermes
 
-**Four skills that teach a Hermes agent to build real web UI with [Aurora](https://github.com/Ntizar/Aurora)** — a pure-CSS design system (no build, no JavaScript, no dependencies) with OKLch tokens, light and dark themes, ~2,200 documented objects and 338 numbered icons.
+**Four skills that teach a Hermes agent to build real web UI with [Aurora](https://github.com/Ntizar/Aurora)** — a pure-CSS design system (no build, no JavaScript, no dependencies) with OKLch tokens, light and dark themes, 2,223 classes across 417 families, and 338 numbered icons.
 
 The agent stops improvising CSS. It resolves the live version of the system, spends time in decision tables instead of guessing class names, and validates the page with the system's own auditor before saying "done".
 
@@ -26,7 +26,7 @@ No key, no config, no dependencies. Restart is only needed if your gateway cache
 
 | Tool | What it does |
 |---|---|
-| `aurora_search` | Ask in plain words ("table that stacks on mobile") → family, pack to link, every class and the **real markup** from the catalogue. 2,223 objects, in-process. |
+| `aurora_search` | Ask in plain words ("table that stacks on mobile") → family, pack to link, every class and the **real markup** from the catalogue. 2,223 classes, in-process. |
 | `aurora_validate` | Validate a page against the class census: invented classes, packs used but not linked, gradients, `!important`, hand-written colours, emojis in UI, duplicate `<h1>`, missing attribution. Returns `ok`, `fallos`, `avisos`. |
 
 Both are offline: they read `data/censo.json`, a generated snapshot of the design system's
