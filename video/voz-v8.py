@@ -1,3 +1,4 @@
+import os
 #!/usr/bin/env python3
 """Voz v8 — «The recipe». kokoro vía api.nan.builders.
 
@@ -28,10 +29,12 @@ GUION = {
 MAQUINA = ("00-three", "Build me a landing page.")
 
 def clave():
-    for linea in Path("/home/nan/.hermes/.env").read_text().splitlines():
-        if linea.startswith("OPENAI_API_KEY="):
-            return linea.split("=", 1)[1].strip().strip('"')
-    sys.exit("no OPENAI_API_KEY")
+    # Sin secretos en el repo: la clave llega por entorno (el .env lo carga tu shell).
+    for var in ("OPENAI_API_KEY", "NAN_API_KEY"):
+        v = os.environ.get(var)
+        if v:
+            return v.strip().strip('"')
+    sys.exit("exporta OPENAI_API_KEY antes de generar la voz")
 
 def tts(texto, destino, voz):
     peticion = request.Request(

@@ -1,3 +1,4 @@
+import os
 #!/usr/bin/env python3
 """Voz v5 — guion nuevo, más llamativo, sin subtítulos en el montaje.
 kokoro am_michael (NaN), un fichero por escena → audio5/ + manifest-v6.json.
@@ -26,10 +27,12 @@ GUION = {
 # 00-three: intro muda (instrumental three.js) — sin voz.
 
 def clave():
-    for linea in Path("/home/nan/.hermes/.env").read_text().splitlines():
-        if linea.startswith("OPENAI_API_KEY="):
-            return linea.split("=", 1)[1].strip().strip('"')
-    sys.exit("no OPENAI_API_KEY")
+    # Sin secretos en el repo: la clave llega por entorno (el .env lo carga tu shell).
+    for var in ("OPENAI_API_KEY", "NAN_API_KEY"):
+        v = os.environ.get(var)
+        if v:
+            return v.strip().strip('"')
+    sys.exit("exporta OPENAI_API_KEY antes de generar la voz")
 
 def tts(texto, destino):
     peticion = request.Request(

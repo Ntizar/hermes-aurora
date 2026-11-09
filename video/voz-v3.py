@@ -1,3 +1,4 @@
+import os
 #!/usr/bin/env python3
 """Voz del vídeo v3 con kokoro (NaN, /v1/audio/speech, voz am_michael).
 Un fichero por escena en video/audio3/. Mide duración y escribe manifest.json."""
@@ -21,10 +22,12 @@ GUION = {
 }
 
 def clave():
-    for linea in Path("/home/nan/.hermes/.env").read_text().splitlines():
-        if linea.startswith("OPENAI_API_KEY="):
-            return linea.split("=", 1)[1].strip().strip('"')
-    sys.exit("no OPENAI_API_KEY en ~/.hermes/.env")
+    # Sin secretos en el repo: la clave llega por entorno (el .env lo carga tu shell).
+    for var in ("OPENAI_API_KEY", "NAN_API_KEY"):
+        v = os.environ.get(var)
+        if v:
+            return v.strip().strip('"')
+    sys.exit("exporta OPENAI_API_KEY antes de generar la voz")
 
 def tts(texto, destino):
     peticion = request.Request(
