@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" data-nz-marca="indigo"><head><meta charset="utf-8"><title>05-planos</title>
+<style>
+  @font-face { font-family:"Inter var"; font-weight:400 900; font-display:block;
+    src:url("aurora-css/fuentes/inter-var-latin.woff2") format("woff2-variations"); }
+  html, body { height:100%; margin:0; overflow:hidden; }
+  body { background:#04050c; }
+  .marco { position:relative; width:1600px; height:900px; overflow:hidden; background:#04050c; }
+  .cielo { position:absolute; inset:0; }
+  .clon { position:absolute; width:1600px; height:900px; }
+  .reticula { position:absolute; inset:0; background:
+      repeating-linear-gradient(0deg, rgba(255,255,255,.055) 0 1px, transparent 1px 160px),
+      repeating-linear-gradient(90deg, rgba(255,255,255,.055) 0 1px, transparent 1px 160px); }
+  .luz { position:absolute; inset:0; background:radial-gradient(58% 48% at 62% 40%,
+      rgba(255,255,255,.10), transparent 72%); }
+  .vineta { position:absolute; inset:0; background:radial-gradient(118% 98% at 50% 48%,
+      transparent 54%, rgba(0,0,0,.62) 100%); }
+  .portal { position:absolute; border-radius:30px; overflow:hidden;
+      border:1px solid rgba(255,255,255,.20);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.75), inset 0 -1px 0 rgba(255,255,255,.12),
+                  inset 0 0 48px rgba(255,255,255,.05), 0 44px 96px -30px rgba(0,0,0,.95); }
+  .portal.ref { -webkit-box-reflect: below 12px linear-gradient(transparent 64%, rgba(255,255,255,.10)); }
+  .vidrio { position:absolute; inset:0; filter:url(#lg); }
+  .tinte { position:absolute; inset:0; pointer-events:none; background:linear-gradient(152deg,
+      rgba(255,255,255,.15), rgba(255,255,255,.035) 46%, rgba(255,255,255,.11)); }
+  .grano { position:absolute; inset:0; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='0.5'/%3E%3C/svg%3E"); opacity:.055;
+      mix-blend-mode:overlay; pointer-events:none; }
+  .chip { position:absolute; background:rgba(7,10,20,.55); border:1px solid rgba(255,255,255,.10);
+      border-radius:20px; }
+  .hud { position:absolute; z-index:30; font:600 13px/1 "Inter var",sans-serif;
+      letter-spacing:.16em; text-transform:uppercase; color:rgba(255,255,255,.62); }
+  .hud.low { letter-spacing:.10em; text-transform:none; font-weight:500; font-size:14px;
+      color:rgba(255,255,255,.50); }
+  .hud b { color:#fff; font-weight:800; }
+  .hud .punto { display:inline-block; width:7px; height:7px; border-radius:50%;
+      background:#06b6d4; margin-right:11px; box-shadow:0 0 12px #06b6d4; vertical-align:1px; }
+  .prog { position:absolute; left:0; bottom:0; width:1600px; height:2px; z-index:30;
+      background:rgba(255,255,255,.07); }
+  .prog-fill { height:2px; width:0; background:linear-gradient(90deg,#06b6d4,rgba(255,255,255,.9));
+      box-shadow:0 0 14px #06b6d4; }
+  .esq { position:absolute; width:26px; height:26px; border-color:rgba(255,255,255,.18);
+      border-style:solid; border-width:0; z-index:29; }
+  .k { font:700 15px/1.3 "Inter var",sans-serif; letter-spacing:.22em; text-transform:uppercase; }
+  .h1 { font-weight:800; letter-spacing:-.045em; line-height:.97; margin:0; color:#fff; }
+  .mono { font-family:ui-monospace,"DejaVu Sans Mono",Menlo,monospace; }
+  .dim { color:rgba(255,255,255,.54); }
+  .sub { color:rgba(255,255,255,.68); font-weight:400; }
+  .tag { display:inline-block; padding:6px 13px; border-radius:999px; font:700 14px/1.2 "Inter var",sans-serif;
+      letter-spacing:.10em; text-transform:uppercase; }
+  .sweep { position:absolute; top:-20%; bottom:-20%; width:220px; z-index:12; pointer-events:none;
+      background:linear-gradient(105deg,transparent,rgba(255,255,255,.30),rgba(255,255,255,.05),transparent);
+      filter:blur(2px); }
+  .tarjeta { position:absolute; border-radius:26px; overflow:hidden; }
+  .tcol { position:absolute; top:0; left:0; width:100%; will-change:transform; }
+  .fila { position:absolute; left:0; right:0; height:132px; border-top:1px solid rgba(255,255,255,.10); }
+</style><svg width="0" height="0" style="position:absolute"><defs>
+  <filter id="lg" x="-16%" y="-16%" width="132%" height="132%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.006 0.010" numOctaves="1" seed="7" result="n"/>
+    <feGaussianBlur in="SourceGraphic" stdDeviation="1.1" result="b"/>
+    <feDisplacementMap in="b" in2="n" scale="30" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+  <filter id="lg2" x="-16%" y="-16%" width="132%" height="132%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.005 0.008" numOctaves="1" seed="11" result="n"/>
+    <feGaussianBlur in="SourceGraphic" stdDeviation="1.5" result="b"/>
+    <feDisplacementMap in="b" in2="n" scale="42" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+</defs></svg></head>
+<body data-t0="33.4"><div class="marco">
+<canvas class='cielo' width='1600' height='900'></canvas><div class='reticula'></div><div class='luz'></div><div class="vineta"></div>
+<div class="hud" style="left:64px; top:50px"><span class="punto" style="background:#5b8cff;box-shadow:0 0 12px #5b8cff"></span><span style="letter-spacing:.14em;color:#5b8cff">AURORA<span style="color:#ff6a00">.</span></span> <span class="dim" style="letter-spacing:.06em">/ hermes-aurora</span></div><div class="hud" style="right:64px; top:50px">ACT <b>5</b> <span class="dim">/ 10</span></div><div class="hud low" style="left:64px; bottom:46px">six page skeletons</div><div class="prog"><div class="prog-fill"></div></div><div class="esq" style="left:30px; top:30px; border-left-width:1px; border-top-width:1px"></div><div class="esq" style="right:30px; bottom:30px; border-right-width:1px; border-bottom-width:1px"></div>
+<div class="k" data-d="0.05" style="position:absolute; left:110px; top:96px; color:#8f9dff">05 — don't start from zero</div><h1 class="h1 pz" style="position:absolute; left:104px; top:132px; font-size:64px">Six pages that already work.</h1><div class="sub" data-d="1.0" style="position:absolute; left:110px; top:208px; font-size:21px">  Real skeletons in the system: the agent fills them, it does not reinvent them.</div><div class="portal" style="left:90px; top:268px; width:460px; height:240px;  z-index:3"><div class="vidrio"><div class="clon" style="transform:translate(-90px,-268px)"><canvas class='cielo' width='1600' height='900'></canvas><div class='reticula'></div><div class='luz'></div></div></div><div class="tinte"></div><div class="grano"></div><div class="chip" style="inset:10px; border-radius:16px"></div><div style="position:absolute; left:24px; right:24px; top:22px; height:158px; z-index:6"><div style="position:absolute; left:16px; top:14px; width:368px; height:10px; background:rgba(255,255,255,.16); border-radius:4px"></div><div style="position:absolute; left:16px; top:38px; width:368px; height:64px; background:#3a7aff44; border-radius:4px"></div><div style="position:absolute; left:16px; top:116px; width:112px; height:34px; background:rgba(255,255,255,.16); border-radius:4px"></div><div style="position:absolute; left:144px; top:116px; width:112px; height:34px; background:rgba(255,255,255,.16); border-radius:4px"></div><div style="position:absolute; left:272px; top:116px; width:112px; height:34px; background:rgba(255,255,255,.16); border-radius:4px"></div></div><div style="position:absolute; left:26px; bottom:18px; z-index:7; font:700 19px/1 'Inter var'; color:#fff">Landing</div><div class="mono" style="position:absolute; right:24px; bottom:18px; z-index:7; font-size:13px; color:rgba(255,255,255,.42)">landing.html</div></div><div class="portal" style="left:595px; top:268px; width:460px; height:240px;  z-index:3"><div class="vidrio"><div class="clon" style="transform:translate(-595px,-268px)"><canvas class='cielo' width='1600' height='900'></canvas><div class='reticula'></div><div class='luz'></div></div></div><div class="tinte"></div><div class="grano"></div><div class="chip" style="inset:10px; border-radius:16px"></div><div style="position:absolute; left:24px; right:24px; top:22px; height:158px; z-index:6"><div style="position:absolute; left:16px; top:14px; width:78px; height:136px; background:#ff6a0044; border-radius:4px"></div><div style="position:absolute; left:108px; top:14px; width:276px; height:12px; background:rgba(255,255,255,.16); border-radius:4px"></div><div style="position:absolute; left:108px; top:38px; width:86px; height:34px; background:rgba(255,255,255,.16); border-radius:4px"></div><div style="position:absolute; left:206px; top:38px; width:86px; height:34px; background:rgba(255,255,255,.16); border-radius:4px"></div><div style="position:absolute; left:304px; top:38px; width:80px; height:34px; background:rgba(255,255,255,.16); border-radius:4px"></div><div style="position:absolute; left:108px; top:86px; width:276px; height:64px; background:rgba(255,255,255,.16); border-radius:4px"></div></div><div style="position:absolute; left:26px; bottom:18px; z-index:7; font:700 19px/1 'Inter var'; color:#fff">Dashboard</div><div class="mono" style="position:absolute; right:24px; bottom:18px; z-index:7; font-size:13px; color:rgba(255,255,255,.42)">dashboard.html</div></div><div class="portal" style="left:1100px; top:268px; width:460px; height:240px;  z-index:3"><div class="vidrio"><div class="clon" style="transform:translate(-1100px,-268px)"><canvas class='cielo' width='1600' height='900'></canvas><div class='reticula'></div><div class='luz'></div></div></div><div class="tinte"></div><div class="grano"></div><div class="chip" style="inset:10px; border-radius:16px"></div><div style="position:absolute; left:24px; right:24px; top:22px; height:158px; z-index:6"><div style="position:absolute; left:120px; top:26px; width:160px; height:112px; background:#3a7aff44; border-radius:4px"></div><div style="position:absolute; left:136px; top:44px; width:128px; height:10px; background:rgba(255,255,255,.16); border-radius:4px"></div><div style="position:absolute; left:136px; top:64px; width:128px; height:10px; background:rgba(255,255,255,.16); border-radius:4px"></div><div style="position:absolute; left:136px; top:84px; width:128px; height:10px; background:rgba(255,255,255,.16); border-radius:4px"></div><div style="position:absolute; left:136px; top:108px; width:60px; height:14px; background:rgba(255,255,255,.34); border-radius:4px"></div></div><div style="position:absolute; left:26px; bottom:18px; z-index:7; font:700 19px/1 'Inter var'; color:#fff">Login</div><div class="mono" style="position:absolute; right:24px; bottom:18px; z-index:7; font-size:13px; color:rgba(255,255,255,.42)">login-form.html</div></div><div class="portal" style="left:90px; top:536px; width:460px; height:240px;  z-index:3"><div class="vidrio"><div class="clon" style="transform:translate(-90px,-536px)"><canvas class='cielo' width='1600' height='900'></canvas><div class='reticula'></div><div class='luz'></div></div></div><div class="tinte"></div><div class="grano"></div><div class="chip" style="inset:10px; border-radius:16px"></div><div style="position:absolute; left:24px; right:24px; top:22px; height:158px; z-index:6"><div style="position:absolute; left:16px; top:14px; width:368px; height:10px; background:rgba(255,255,255,.16); border-radius:4px"></div><div style="position:absolute; left:16px; top:40px; width:172px; height:56px; background:#ff6a0044; border-radius:4px"></div><div style="position:absolute; left:200px; top:40px; width:184px; height:56px; background:#ff6a0044; border-radius:4px"></div><div style="position:absolute; left:16px; top:104px; width:172px; height:44px; background:rgba(255,255,255,.16); border-radius:4px"></div><div style="position:absolute; left:200px; top:104px; width:184px; height:44px; background:rgba(255,255,255,.16); border-radius:4px"></div></div><div style="position:absolute; left:26px; bottom:18px; z-index:7; font:700 19px/1 'Inter var'; color:#fff">Shop</div><div class="mono" style="position:absolute; right:24px; bottom:18px; z-index:7; font-size:13px; color:rgba(255,255,255,.42)">e-commerce.html</div></div><div class="portal" style="left:595px; top:536px; width:460px; height:240px;  z-index:3"><div class="vidrio"><div class="clon" style="transform:translate(-595px,-536px)"><canvas class='cielo' width='1600' height='900'></canvas><div class='reticula'></div><div class='luz'></div></div></div><div class="tinte"></div><div class="grano"></div><div class="chip" style="inset:10px; border-radius:16px"></div><div style="position:absolute; left:24px; right:24px; top:22px; height:158px; z-index:6"><div style="position:absolute; left:16px; top:20px; width:190px; height:30px; background:rgba(255,255,255,.16); border-radius:4px"></div><div style="position:absolute; left:200px; top:60px; width:184px; height:30px; background:#3a7aff44; border-radius:4px"></div><div style="position:absolute; left:16px; top:100px; width:150px; height:26px; background:rgba(255,255,255,.16); border-radius:4px"></div><div style="position:absolute; left:180px; top:134px; width:204px; height:24px; background:#3a7aff44; border-radius:4px"></div></div><div style="position:absolute; left:26px; bottom:18px; z-index:7; font:700 19px/1 'Inter var'; color:#fff">AI chat</div><div class="mono" style="position:absolute; right:24px; bottom:18px; z-index:7; font-size:13px; color:rgba(255,255,255,.42)">chat-ia.html</div></div><div class="portal" style="left:1100px; top:536px; width:460px; height:240px;  z-index:3"><div class="vidrio"><div class="clon" style="transform:translate(-1100px,-536px)"><canvas class='cielo' width='1600' height='900'></canvas><div class='reticula'></div><div class='luz'></div></div></div><div class="tinte"></div><div class="grano"></div><div class="chip" style="inset:10px; border-radius:16px"></div><div style="position:absolute; left:24px; right:24px; top:22px; height:158px; z-index:6"><div style="position:absolute; left:16px; top:14px; width:90px; height:136px; background:#ff6a0044; border-radius:4px"></div><div style="position:absolute; left:118px; top:14px; width:266px; height:10px; background:rgba(255,255,255,.16); border-radius:4px"></div><div style="position:absolute; left:118px; top:36px; width:210px; height:26px; background:rgba(255,255,255,.16); border-radius:4px"></div><div style="position:absolute; left:118px; top:70px; width:240px; height:26px; background:rgba(255,255,255,.16); border-radius:4px"></div><div style="position:absolute; left:118px; top:104px; width:180px; height:26px; background:rgba(255,255,255,.16); border-radius:4px"></div></div><div style="position:absolute; left:26px; bottom:18px; z-index:7; font:700 19px/1 'Inter var'; color:#fff">App shell</div><div class="mono" style="position:absolute; right:24px; bottom:18px; z-index:7; font-size:13px; color:rgba(255,255,255,.42)">escritorio-app.html</div></div>
+</div><script>
+const COLES = ["#4f46e5", "#06b6d4", "#6261ff"];
+function mulberry(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+const rnd = mulberry(31);
+const C = [];
+for (let i = 0; i < 13; i++) {
+  C.push({ x: 60 + rnd()*1500, a: 0.16 + rnd()*0.22, f: 0.16 + rnd()*0.30,
+           ph: rnd()*6.283, am: 34 + rnd()*80, col: COLES[i % COLES.length],
+           w: 90 + rnd()*180, core: rnd() < 0.35 });
+}
+function rgb(h){ const n = parseInt(h.slice(1), 16); return [n>>16 & 255, n>>8 & 255, n & 255]; }
+function cielo(g, t) {
+  g.fillStyle = '#04050c'; g.fillRect(0, 0, 1600, 900);
+  g.globalCompositeOperation = 'lighter';
+  const focos = [[1010, 400, 620, COLES[0], 0.20], [380, 720, 540, COLES[2], 0.15]];
+  for (const f of focos) {
+    const [r, gg, b] = rgb(f[3]);
+    const rad = g.createRadialGradient(f[0], f[1], 0, f[0], f[1], f[2]);
+    rad.addColorStop(0, 'rgba(' + r + ',' + gg + ',' + b + ',' + f[4] + ')');
+    rad.addColorStop(1, 'rgba(' + r + ',' + gg + ',' + b + ',0)');
+    g.fillStyle = rad; g.fillRect(0, 0, 1600, 900);
+  }
+  g.globalCompositeOperation = 'source-over';
+  for (const c of C) {
+    const x = c.x + Math.sin(t * c.f + c.ph) * c.am;
+    const grad = g.createLinearGradient(0, 0, 0, 900);
+    grad.addColorStop(0, 'rgba(0,0,0,0)');
+    grad.addColorStop(0.45, c.col);
+    grad.addColorStop(1, 'rgba(0,0,0,0)');
+    g.globalAlpha = c.a * (0.72 + 0.28 * Math.sin(t * 0.45 + c.ph));
+    g.strokeStyle = grad; g.lineWidth = c.w; g.lineCap = 'round';
+    g.beginPath(); g.moveTo(x, -30);
+    g.bezierCurveTo(x + 130 * Math.sin(t * 0.28 + c.ph), 300,
+                    x - 130 * Math.cos(t * 0.20 + c.ph), 600, x + 70, 930);
+    g.stroke();
+    if (c.core) { g.globalAlpha = Math.min(0.55, c.a * 2.2); g.lineWidth = 3.5;
+      g.strokeStyle = 'rgba(255,255,255,.55)'; g.stroke(); }
+  }
+  g.globalAlpha = 1;
+}
+const t0 = (typeof window.__t === 'number') ? window.__t : 2.0;
+document.querySelectorAll('canvas.cielo').forEach(cv => cielo(cv.getContext('2d'), t0));
+const avance = Math.min(100, ((window.__T0 || 0) + t0) / 70.0 * 100);
+document.querySelectorAll('.prog-fill').forEach(el => el.style.width = avance + '%');
+document.querySelectorAll('.tcol').forEach((el, i) => {
+  const v = 34 + i * 13;
+  const y = ((t0 * v) % (el.scrollHeight || 700));
+  el.style.transform = 'translateY(' + (-y) + 'px)';
+});
+</script></body></html>

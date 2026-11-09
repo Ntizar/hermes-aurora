@@ -39,22 +39,24 @@ writes, no hooks — the plugin only answers.
  "markup": "<div class=\"nz-table-wrap nz-table-wrap--apilable\">…"}
 ```
 
-Demo film (70 s, English voiceover and score): [`video/demo8.mp4`](video/demo8.mp4) —
-storyboard in [`video/GUION-v8.md`](video/GUION-v8.md).
+Demo film (70 s, English voiceover, no music): [`video/demo9.mp4`](video/demo9.mp4) —
+storyboard in [`video/GUION-v9.md`](video/GUION-v9.md).
 
 ## The recipe (the part anyone can copy)
 
 A design system for agents is not a theme. It is a **contract**, and it has three pieces:
 
-1. **A census.** Publish what exists — every object, every class, the real markup — in a
-   machine-readable file. The agent looks it up instead of guessing class names.
-2. **A judge.** Ship a validator that checks a page against that census and reports
-   `0 failures` or the exact violations. No proof, no delivery.
+1. **A catalogue** (the census). Publish what exists — every object, every class, the real
+   markup — in a machine-readable file. The agent looks it up instead of guessing names.
+2. **An inspector** (the validator). Ship a checker that tests a page against that catalogue
+   and reports `0 failures` or the exact violations. No proof, no delivery.
 3. **Skills.** Teach the procedure (when to use which object, the traps that cost time),
    not a vibe.
 
-Aurora is one implementation of that recipe — its census is `components.json`, its judge is
-`scripts/validar-css.py`, its skills are the four in this plugin. Fork the mechanism for your
+Aurora is one implementation of that recipe — its catalogue is `components.json`, its
+inspector is `aurora_validate` (backed by `scripts/validar-css.py`), its skills are the four
+in this plugin. Page archetypes (landing, dashboard, login, shop, chat, app shell) ship as
+skeletons in `bloques/combos/`, so the agent fills a known page instead of inventing one. Fork the mechanism for your
 own system: your tokens, your census, your judge. MIT.
 
 ## What it ships
