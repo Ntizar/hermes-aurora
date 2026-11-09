@@ -26,3 +26,8 @@ video/frames9/
 video/tmp9/
 video/probe9/
 video/render9.log
+# v11 demo light
+video/frames11/
+video/tmp11/
+video/probe11/
+video/render11.log

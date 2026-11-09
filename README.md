@@ -42,6 +42,10 @@ writes, no hooks — the plugin only answers.
 Demo film (70 s, English voiceover, no music): [`video/demo9.mp4`](video/demo9.mp4) —
 storyboard in [`video/GUION-v9.md`](video/GUION-v9.md).
 
+Product demo, light and silent (60 s): [`video/demo11.mp4`](video/demo11.mp4) — the plugin
+working on a real pricing page: `aurora_search` → compose → measure at 390 px → four real
+failures → fixed → `ok: true`.
+
 ## The recipe (the part anyone can copy)
 
 A design system for agents is not a theme. It is a **contract**, and it has three pieces:

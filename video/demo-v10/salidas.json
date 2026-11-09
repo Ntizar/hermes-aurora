@@ -1,0 +1,177 @@
+{
+ "search": {
+  "system": "Aurora",
+  "version": "10.10.0",
+  "channel": "v10",
+  "query": "tabla de precios que se apila en movil",
+  "results": [
+   {
+    "family": "nz-table",
+    "pack": "packs/p8-data.css",
+    "classes": [
+     "nz-table",
+     "nz-table--apilable",
+     "nz-table--bordered",
+     "nz-table--borderless",
+     "nz-table--comfortable",
+     "nz-table--compact",
+     "nz-table--hover",
+     "nz-table--sm",
+     "nz-table--sticky-head",
+     "nz-table--striped",
+     "nz-table__caption",
+     "nz-table__cell--actions",
+     "nz-table__cell--checkbox",
+     "nz-table__cell--num",
+     "nz-table__cell--wide",
+     "nz-table__empty",
+     "nz-table__filters",
+     "nz-table__foot",
+     "nz-table__muted",
+     "nz-table__num",
+     "nz-table__right",
+     "nz-table__row--clickable",
+     "nz-table__row--selected",
+     "nz-table__sort",
+     "nz-table__status"
+    ],
+    "demo": "paginas/08-data.html",
+    "title": "Tabla compacta y tabla confortable",
+    "avoid": [
+     "Si la tabla no cabe y no apilas con `.nz-table-wrap--apilable` + `data-etiqueta`, se corta en móvil."
+    ],
+    "score": 36,
+    "matched": [
+     "apila",
+     "apilable",
+     "movil",
+     "tabla",
+     "table"
+    ],
+    "markup": "<table class=\"nz-table nz-table--comfortable\"><tbody><tr><td>C-03</td><td class=\"nz-table__num\">31</td></tr><tr><td>C-04</td><td class=\"nz-table__num\">27</td></tr></tbody></table>"
+   },
+   {
+    "family": "nz-table-wrap",
+    "pack": "packs/p8-data.css",
+    "classes": [
+     "nz-table-wrap",
+     "nz-table-wrap--apilable"
+    ],
+    "demo": "paginas/08-data.html",
+    "title": "Tabla compacta y tabla confortable",
+    "avoid": [],
+    "score": 36,
+    "matched": [
+     "apila",
+     "apilable",
+     "movil",
+     "tabla",
+     "table"
+    ],
+    "markup": "<div class=\"nz-table-wrap\"><table class=\"nz-table nz-table--comfortable\"><tbody><tr><td>C-03</td><td class=\"nz-table__num\">31</td></tr><tr><td>C-04</td><td class=\"nz-table__num\">27</td></tr></tbody></table></div>"
+   },
+   {
+    "family": "nz-tabla-lote",
+    "pack": "packs/p17-patrones.css",
+    "classes": [
+     "nz-tabla-lote",
+     "nz-tabla-lote__lote",
+     "nz-tabla-lote__lote-acciones",
+     "nz-tabla-lote__seleccion"
+    ],
+    "demo": "paginas/17-patrones.html",
+    "title": "Tabla con selección y acciones en lote",
+    "avoid": [],
+    "score": 22,
+    "matched": [
+     "tabla"
+    ],
+    "markup": "<span class=\"nz-tabla-lote__seleccion\">2 pedidos seleccionados</span>"
+   },
+   {
+    "family": "nz-tabla-resumen",
+    "pack": "packs/p17-patrones.css",
+    "classes": [
+     "nz-tabla-resumen",
+     "nz-tabla-resumen__pie"
+    ],
+    "demo": "paginas/17-patrones.html",
+    "title": "Tabla de resumen con pie",
+    "avoid": [],
+    "score": 22,
+    "matched": [
+     "tabla"
+    ],
+    "markup": "<div class=\"nz-tabla-resumen\" style=\"max-width:46rem\"><div class=\"nz-table-wrap nz-table-wrap--apilable\"><table class=\"nz-table nz-table--apilable\"><thead><tr><th scope=\"col\">Proyecto</th><th scope=\"col\">Responsable</th><th scope=\"col\" class=\"nz-table__right\">Avance</th></tr></thead><tbody><tr><td data-etiqueta=\"Proyecto\"><span class=\"nz-table__strong\">Portal del cliente</span></td><td data-etiqueta=\"Responsable\">Marta Ruiz</td><td data-etiqueta=\"Avance\" class=\"nz-table__num nz-table__right\">76 %</td></tr><tr><td data-etiqueta=\"Proyecto\"><span class=\"nz-table__strong\">Migración de datos</span></td><td data-etiqueta=\"Responsable\">Javier Vela</td><td data-etiqueta=\"Avance\" class=\"nz-table__num nz-table__right\">42 %</td></tr><tr><td data-etiqueta=\"Proyecto\"><span class=\"nz-table__strong\">App móvil</span></td><td data-etiqueta=\"Responsable\">Ana Beltrán</td><td data-etiqueta=\"Avance\" class=\"nz-table__num nz-table__right\">18 %</td></tr></tbody></table></div><div class=\"nz-tabla-resumen__pie\"><span>3 de 128 proyectos</span><a class=\"nz-link\" href=\"#\">Ver todos</a></div></div>"
+   },
+   {
+    "family": "nz-pricetable",
+    "pack": "packs/p10-commerce.css",
+    "classes": [
+     "nz-pricetable",
+     "nz-pricetable--compact",
+     "nz-pricetable__col",
+     "nz-pricetable__rowhead"
+    ],
+    "demo": "paginas/10-commerce.html",
+    "title": "Tabla de precios",
+    "avoid": [],
+    "score": 18,
+    "matched": [
+     "precios",
+     "tabla",
+     "table"
+    ],
+    "markup": "<table class=\"nz-pricetable\"><tr><th></th><th>Gratis</th><th class=\"is-selected\">Pro</th></tr><tr><td class=\"nz-pricetable__rowhead\">Almacenamiento</td><td>5 GB</td><td class=\"is-selected\">50 GB</td></tr><tr><td class=\"nz-pricetable__rowhead\">Usuarios</td><td>1</td><td class=\"is-selected\">10</td></tr></table>"
+   }
+  ],
+  "hint": "Link only the packs you use: https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10/packs/<pack>.css"
+ },
+ "rota": {
+  "ok": false,
+  "system": "Aurora",
+  "version": "10.10.0",
+  "failures": [
+   "unknown class(es), not in the census: nz-card--glass",
+   "gradient in page CSS (Aurora uses none; the crystal layer ships as p16-cristal.css)",
+   "2 hand-written colour(s) in <style>: use var(--nz-*)",
+   "missing the exact footer: «('Hecho con ❤️ por David Antizar', 'Made with ❤️ by David Antizar')»"
+  ],
+  "warnings": [],
+  "measured": {
+   "nz_classes": 38,
+   "families": 13,
+   "linked_packs": [
+    "p1-layout.css",
+    "p10-commerce.css",
+    "p2-navigation.css",
+    "p3-typography.css",
+    "p4-actions.css",
+    "p6-feedback.css",
+    "p8-data.css"
+   ]
+  },
+  "next": "Fix the failures and validate again. Warnings are read, they do not block."
+ },
+ "fija": {
+  "ok": true,
+  "system": "Aurora",
+  "version": "10.10.0",
+  "failures": [],
+  "warnings": [],
+  "measured": {
+   "nz_classes": 39,
+   "families": 14,
+   "linked_packs": [
+    "p1-layout.css",
+    "p10-commerce.css",
+    "p2-navigation.css",
+    "p3-typography.css",
+    "p4-actions.css",
+    "p6-feedback.css",
+    "p8-data.css"
+   ]
+  },
+  "next": "No failures. Now measure the render in a browser (mobile 320/360/390)."
+ }
+}
