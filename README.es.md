@@ -33,7 +33,7 @@ Las dos son offline: leen `data/censo.json`, una foto generada del `components.j
 (`scripts/generar-censo.py`). Sin red, sin subprocess, sin escrituras, sin hooks: el plugin solo
 responde.
 
-Vídeo de demo (69 s, voz en inglés, sin subtítulos): [`video/demo.mp4`](video/demo.mp4)
+Película de demo (70 s, voz y música): [`video/demo8.mp4`](video/demo8.mp4) — guion en [`video/GUION-v8.md`](video/GUION-v8.md).
 
 ## Qué trae
 

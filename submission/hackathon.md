@@ -9,13 +9,14 @@ https://form.typeform.com/to/FwJLvOln
 > Hermes agents write web UI. The problem: they invent classes nobody defined
 > and call it done with no proof.
 >
-> I built the Aurora plugin for @NousResearch's hackathon: 2 offline tools.
-> `aurora_search` returns the real markup from a 2,223-object census.
-> `aurora_validate` proves the page (0 failures or it doesn't ship).
+> For @NousResearch's hackathon I built the fix, not a theme: a census your
+> agent can read, a judge that proves the page (0 failures or it doesn't ship),
+> and skills that teach the procedure. Aurora is the proof — 2,223 objects,
+> 4 brands, 2 offline tools, 0 network.
 >
-> 57s demo 👇 github.com/Ntizar/hermes-aurora
+> Anyone can copy the recipe. 70s film 👇 github.com/Ntizar/hermes-aurora
 
-*(adjuntar video/demo.mp4; el vídeo es la primera pieza, el repo el enlace de cierre)*
+*(adjuntar video/demo8.mp4; el vídeo es la primera pieza, el repo el enlace de cierre)*
 
 ## Versión corta (si el thread necesita un gancho seco)
 
@@ -34,7 +35,7 @@ https://form.typeform.com/to/FwJLvOln
 ## Checklist de cierre
 
 - [x] PR mergeado en el catálogo (5 nov, 40 checks en verde)
-- [x] Vídeo 57 s (< 90 s) — re-montaje animado en curso
+- [x] Película 70 s (< 90 s) — guion v8 «the recipe», QA en verde
 - [ ] Publicar el tweet con el vídeo final + @NousResearch
 - [ ] Formulario con ambos enlaces ANTES del 11 nov 17:00 EST
 - [ ] Responder comentarios del hilo (Discord: discord.gg/nousresearch)

@@ -15,3 +15,9 @@ video/slides/_frame*.html
 # v7 portal de cristal
 video/frames7/
 video/segments7/
+# v8 the recipe
+video/frames8/
+video/tmp8/
+video/probe8/
+video/render8.log
+video/audio8/cama.wav
